@@ -18,7 +18,7 @@
 <link rel='shortlink' href='index.html' />
 <link rel="preload" href="assets/caratteri/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/caratteri/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" id="ae-nh-css" href="assets/pagina.css?ver=0.1.202610121759">
+<link rel="stylesheet" id="ae-nh-css" href="assets/pagina.css?ver=0.1.202610121823">
 <meta name="description" content="Perché l&#039;enneagramma ha nove punti: il simbolo costruito passo dopo passo, con le leggi della Quarta Via e il ponte verso l&#039;Enneagramma delle Personalità.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
@@ -41,7 +41,7 @@
 	<details class="ae-pp-menu"><summary>Menu</summary><nav aria-label="Pagine del sito"><div class="parti"><div><h2>L&#039;Accademia</h2><ul><li><a href="l-enneagramma.html">L&#039;Enneagramma</a></li><li><a href="chi-siamo.html">Chi siamo</a></li><li><a href="la-storia.html">La storia</a></li><li><a href="i-9-tipi.html">I nove tipi</a></li><li><a href="laccademia.html">Il metodo</a></li></ul></div><div><h2>Formazione</h2><ul><li><a href="corsi-accademia.html">Masterclass online</a></li><li><a href="corsi-in-partenza.html">Corsi in partenza</a></li><li><a href="residenziale-enneagramma.html">Residenziale e certificazione</a></li></ul></div><div><h2>Approfondire</h2><ul><li><a href="podcast.html">Podcast e video</a></li><li><a href="radio-accademia.html">Radio Accademia</a></li><li><a href="index.html#articoli">Articoli</a></li></ul></div></div><p class="altro"><a href="index.html">La home</a><a href="contatti.html">Contatti</a><a href="https://www.accademiaenneagramma.it/mio-account/">Il mio account</a></p></nav></details></header>
 <a class="ae-pp-partenza" href="corsi-in-partenza-individuazione-esatta-del-tipo.html"><span class="ip-foto" style="background-image:url('uploads/2026/10/corso-prova-768x401.jpg')" aria-hidden="true"></span><span class="ip-testo"><span class="ip-tag"><span class="pulsa"></span>In partenza</span><span class="ip-tit">L’individuazione esatta del tipo</span><span class="ip-qd">Dal 5 novembre · Online · 14 posti</span></span><span class="ip-fr">→</span></a><main class="pg-dentro" id="contenuto">
 	<p class="pg-occhiello">L&#039;Accademia · 01 / 03</p>	<h1 class="pg-titolo">L&#039;Enneagramma</h1>
-	<p class="pg-apertura">Perché proprio nove punti? Scoprilo costruendo la figura.</p><section class="pg-blocco ae-pp-testo-blocco"><p>In sette disegni da toccare e muovere costruisci tu il simbolo, un passo alla volta, fino alle due letture della stessa figura.</p></section><section class="pg-blocco ae-pp-novepunti-blocco"><div class="ae-pp-incorniciato ae-pp-novepunti"><iframe src="assets/novepunti/index.html?ver=0.1.202610121759" title="Perché nove punti" loading="lazy"></iframe></div></section><a class="pg-azione" href="i-9-tipi.html">I nove tipi <span>→</span></a><nav class="pg-piede" aria-label="Pagina prima e dopo"><a href="index.html#articoli"><small>← Prima</small><b>Articoli</b></a><a href="chi-siamo.html"><small>Dopo →</small><b>Chi siamo</b></a></nav></main>
+	<p class="pg-apertura">Perché proprio nove punti? Scoprilo costruendo la figura.</p><section class="pg-blocco ae-pp-testo-blocco"><p>In sette disegni da toccare e muovere costruisci tu il simbolo, un passo alla volta, fino alle due letture della stessa figura.</p></section><section class="pg-blocco ae-pp-novepunti-blocco"><div class="ae-pp-incorniciato ae-pp-novepunti"><iframe src="assets/novepunti/index.html?ver=0.1.202610121823" title="Perché nove punti" loading="lazy"></iframe></div></section><a class="pg-azione" href="i-9-tipi.html">I nove tipi <span>→</span></a><nav class="pg-piede" aria-label="Pagina prima e dopo"><a href="index.html#articoli"><small>← Prima</small><b>Articoli</b></a><a href="chi-siamo.html"><small>Dopo →</small><b>Chi siamo</b></a></nav></main>
 <footer class="ae-pp-piede">
 	<p class="marchio">Accademia Enneagramma</p>
 	<p class="ae-pp-link-piede">
@@ -123,6 +123,12 @@ var wpcf7 = {
     }
     return null;
   }
+  // la home va dritta alle pagine del sito: nella prova, ai loro file
+  window.AE_VAI = function (p) {
+    var h = "", k = p.indexOf("#"); if (k >= 0) { h = p.slice(k); p = p.slice(0, k); }
+    var f = MAPPA[p];
+    if (f) location.href = new URL(f + h, base()).href; else window.open(VERO + p + h, "_blank", "noopener");
+  };
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a[href]");
     if (!a || e.defaultPrevented) return;

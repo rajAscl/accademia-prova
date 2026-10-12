@@ -1,4 +1,4 @@
-/* Accademia - pagine. Costruito da costruisci.py il 12/10/2026 17:59 da index.html: non modificare a mano. */
+/* Accademia - pagine. Costruito da costruisci.py il 12/10/2026 18:23 da index.html: non modificare a mano. */
 @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
@@ -324,3 +324,13 @@ body.ae-pp {
 .ae-pp-novepunti iframe { height: 2400px; }
 .ae-pp-storia iframe { height: min(820px, calc(100vh - 80px)); min-height: 600px; border-radius: 4px; border: 1px solid rgba(249,248,235,.1); }
 @media (max-width: 820px) { .ae-pp-storia iframe { height: 1180px; } }
+
+/* la pagina a tutto schermo (la mappa della storia, 12/10/2026): sotto la testata solo il riquadro, niente doppio scorrimento */
+.ae-pp-nascosto { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+body.ae-pp-pieno { overflow: hidden; height: 100dvh; }
+body.ae-pp-pieno .pg-dentro { max-width: none; padding: 0; }
+body.ae-pp-pieno .ae-pp-piede { display: none; }
+body.ae-pp-pieno .pg-blocco { margin: 0; }
+body.ae-pp-pieno .ae-pp-incorniciato { width: 100%; margin: 0; transform: none; }
+body.ae-pp-pieno .ae-pp-storia iframe { height: calc(100dvh - 68px); min-height: 0; border: 0; border-radius: 0; }
+@media (max-width: 600px) { body.ae-pp-pieno .ae-pp-storia iframe { height: calc(100dvh - 52px); } }

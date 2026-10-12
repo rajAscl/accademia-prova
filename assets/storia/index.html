@@ -482,6 +482,12 @@ footer { border-top: 1px solid var(--linea); padding: 6px 12px 8px; background: 
     }
     return null;
   }
+  // la home va dritta alle pagine del sito: nella prova, ai loro file
+  window.AE_VAI = function (p) {
+    var h = "", k = p.indexOf("#"); if (k >= 0) { h = p.slice(k); p = p.slice(0, k); }
+    var f = MAPPA[p];
+    if (f) location.href = new URL(f + h, base()).href; else window.open(VERO + p + h, "_blank", "noopener");
+  };
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a[href]");
     if (!a || e.defaultPrevented) return;

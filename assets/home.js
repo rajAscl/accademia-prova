@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 17:59 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 18:23 da index.html: non modificare a mano. */
 /* ===== Prima del prototipo (sito/nuova-home/sorgente/prima.js) ===== */
 window.VERSIONE_PULITA = true;
 const AE_BASE = (window.ACCADEMIA_HOME && window.ACCADEMIA_HOME.base) || "";
@@ -86,6 +86,7 @@ const IMMAGINI = {
 const PAGINE = {
   8: {
     slug: "l-enneagramma",
+    sito: "/l-enneagramma/",
     // Luca, 12/10/2026: il punto 8 si chiama «L'Enneagramma» e porta a «Perché nove punti» (prototipo del laboratorio,
     // ClaudePipeline/progetti-github/accademia-nove-punti), che nel sito è la pagina /l-enneagramma/
     apertura: "Perché proprio nove punti? Scoprilo costruendo la figura.",
@@ -96,6 +97,7 @@ const PAGINE = {
   },
   9: {
     slug: "chi-insegna",
+    sito: "/chi-siamo/",
     apertura: "Due formatori con più di dieci anni di Enneagramma, che da strade diverse hanno dato vita a un progetto comune.",
     blocchi: [
       { tipo: "persone", voci: [
@@ -107,6 +109,7 @@ const PAGINE = {
   },
   1: {
     slug: "la-storia",
+    sito: "/la-storia/",
     apertura: "L'enneagramma è un cerchio con nove punti e le linee che li uniscono.",
     blocchi: [
       { tipo: "testo", titolo: "Con Gurdjieff", testo: ["La figura arriva in Occidente con Gurdjieff. Nella Quarta Via è l'enneagramma dei processi."] },
@@ -116,6 +119,7 @@ const PAGINE = {
   },
   2: {
     slug: "masterclass-online",
+    sito: "/corsi-accademia/",
     apertura: "Due corsi online per cominciare e per distinguere un tipo dall'altro.",
     blocchi: [
       { tipo: "corsi", voci: [
@@ -127,6 +131,7 @@ const PAGINE = {
   },
   3: {
     slug: "corsi-in-partenza",
+    sito: "/corsi-in-partenza/",
     // Luca, 12/10/2026: «ci deve essere un punto dedicato ai corsi in partenza». I corsi vengono dal sito
     // (Corsi in partenza, nella bacheca di WordPress); qui nel prototipo c'è un corso di prova.
     senzaTestata: true,
@@ -138,6 +143,7 @@ const PAGINE = {
   },
   4: {
     slug: "residenziale",
+    sito: "/residenziale-enneagramma/",
     // Luca, 12/10/2026: «residenziale e percorso di certificazione vanno insieme»
     apertura: "Una settimana in presenza ogni anno e, per chi vuole, la strada verso la certificazione.",
     blocchi: [
@@ -150,6 +156,7 @@ const PAGINE = {
   },
   5: {
     slug: "podcast",
+    sito: "/podcast/",
     // Luca, 12/10/2026: «video e podcast sono praticamente la stessa cosa per noi»
     apertura: "Le puntate del podcast dell'Accademia, dalla più recente alla prima, e gli altri video del canale.",
     blocchi: [
@@ -179,6 +186,7 @@ const PAGINE = {
   },
   6: {
     slug: "radio-accademia",
+    sito: "/radio-accademia/",
     // il prototipo Radio Accademia (ClaudePipeline/progetti-github/accademia-radio), che nel sito ha la sua pagina
     senzaTestata: true,
     apertura: "Una radio da esplorare girando la manopola: ogni stazione è un tema, con le voci del podcast.",
@@ -205,6 +213,7 @@ const PAGINE = {
   },
   contatti: {
     slug: "contatti",
+    sito: "/contatti/",
     titolo: "Contatti",
     apertura: "Scrivici, seguici, vieni a trovarci.",
     blocchi: [
@@ -829,9 +838,25 @@ function zoomVerso(n) {
   figura.style.opacity = "0";
 }
 
+// sul sito (dentro WordPress) le voci con una pagina loro ci vanno dritte: niente riquadro in mezzo (Luca, 12/10/2026)
+const SUL_SITO = !!(window.ACCADEMIA_HOME && window.ACCADEMIA_HOME.sito);
+function vaiAlSito(percorso) {
+  if (typeof window.AE_VAI === "function") return window.AE_VAI(percorso);
+  location.href = window.ACCADEMIA_HOME.sito + percorso;
+}
+
 async function apriPagina(chiave, { dalla = false } = {}) {
   const n = typeof chiave === "number" ? chiave : null;
   if (!PAGINE[chiave]) return;
+  if (SUL_SITO && PAGINE[chiave].sito) {
+    if (n !== null && !ridotto.matches && figura.offsetParent && !paginaAperta) {
+      corpo.classList.add("zoom");
+      zoomVerso(n);
+      await attesa(650);
+    }
+    vaiAlSito(PAGINE[chiave].sito);
+    return;
+  }
   if (!paginaAperta) origine = document.activeElement;
   if (n !== null) { const v = sezioneDi(n); if (scelto !== v && pronto) { scelto = v; hover = null; aggiorna(); suggerisci(TESTI.sceltaVoce); } }
   const prima = paginaAperta;

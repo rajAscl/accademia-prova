@@ -53,3 +53,17 @@ a { color: #F0B917; }
   .comandi { background: rgba(10,40,48,.92) !important; }
   footer { background: rgba(10,40,48,.92); }
 }
+
+/* più contrasto (Luca, 12/10/2026: «c'è poco contrasto») */
+:root { --testo-2: rgba(249,248,235,.86); --terra: rgba(249,248,235,.17); --linea: rgba(249,248,235,.26); --carta: rgba(8,34,42,.9); }
+#mappa .terra { stroke: rgba(249,248,235,.4) !important; }
+#mappa .tratto { stroke-width: 3.2 !important; }
+#mappa .etichetta { font-weight: 500; }
+#scheda { background: rgba(8,34,42,.82); }
+footer { background: rgba(8,34,42,.82); }
+.legenda { color: #F9F8EB !important; }
+#linea .anno, #linea .cap-lab { fill: rgba(249,248,235,.82) !important; }
+.luogo { color: rgba(249,248,235,.86) !important; }
+
+/* la testata della mappa non c'è: la mappa prende tutto lo spazio, la linea del tempo resta in fondo */
+body { grid-template-rows: 1fr auto !important; }
