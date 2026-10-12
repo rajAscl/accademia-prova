@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 18:23 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 18:52 da index.html: non modificare a mano. */
 /* ===== Prima del prototipo (sito/nuova-home/sorgente/prima.js) ===== */
 window.VERSIONE_PULITA = true;
 const AE_BASE = (window.ACCADEMIA_HOME && window.ACCADEMIA_HOME.base) || "";
@@ -649,7 +649,7 @@ function adatta() {
   const u = vb.s / figura.clientWidth;
   figura.style.setProperty("--u", u.toFixed(3));
   figura.style.setProperty("--fig", figura.clientWidth + "px");
-  figura.style.setProperty("--maxw", stretto ? "25vw" : "230px");
+  figura.style.setProperty("--maxw", stretto ? "31vw" : "230px");
   for (let n = 1; n <= 9; n++) dots[n].setAttribute("r", (VERTICI.includes(n) ? 3.6 : 2.8) * u);
   $("penna").setAttribute("r", 3 * u);
   Object.values(voci).forEach(posiziona);
@@ -935,6 +935,7 @@ async function entra(diretto = false) {
   if (mio !== giro) return;
   // se una pagina è già aperta (indirizzo con #…), il triangolo dietro di lei c'è già: niente disegno nascosto
   const subito = async m => { const da = trTri.fatto; trTri.imposta(trTri.tot); avanzaTri(trTri.tot); TRIANGOLO.forEach(v => emetti("punto", v, trTri)); if (da < trTri.tot) emetti("chiuso", trTri); return m === giro; };
+  corpo.classList.add("triangolo");
   const disegna = paginaAperta !== null ? subito : (sostituisci.triangolo || (m => anima(trTri, trTri.tot, VELOCITA, m, avanzaTri)));
   if (!(await disegna(mio))) return;
   pronto = true; corpo.classList.add("pronto");
@@ -945,7 +946,7 @@ function rivedi() {
   ++giro;
   chiudiPagina(false);
   pronto = false; scelto = null; hover = null;
-  corpo.classList.remove("brand", "punti", "pronto");
+  corpo.classList.remove("brand", "punti", "pronto", "triangolo");
   aggiorna(); suggerisci("");
   if (trEsa) trEsa.imposta(0);
   esadeAvviata = false;

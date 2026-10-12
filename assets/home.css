@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 18:23 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 18:52 da index.html: non modificare a mano. */
 @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
@@ -398,7 +398,14 @@
     opacity: 0; visibility: hidden; transition: opacity .8s, visibility 0s .8s, background-color .25s;
   }
   .in-partenza[hidden] { display: none; }
-  body.brand .in-partenza { opacity: 1; visibility: visible; transition: opacity .8s .6s, visibility 0s, background-color .25s; }
+  /* compare insieme al triangolo, accendendosi di luce come la figura (Luca, 12/10/2026) */
+  body.triangolo .in-partenza { opacity: 1; visibility: visible; transition: opacity 1.4s .5s, visibility 0s, background-color .25s; animation: ip-luce 2.6s .4s ease-out both; }
+  @keyframes ip-luce {
+    0% { box-shadow: 0 0 0 0 rgba(240,185,23,0); border-color: rgba(240,185,23,.1); }
+    45% { box-shadow: 0 0 34px 4px rgba(240,185,23,.45), inset 0 0 18px rgba(240,185,23,.18); border-color: rgba(255,214,90,1); }
+    100% { box-shadow: 0 0 10px 0 rgba(240,185,23,.12); border-color: rgba(240,185,23,.6); }
+  }
+  @media (prefers-reduced-motion: reduce) { body.triangolo .in-partenza { animation: none; } }
   body.zoom .in-partenza { opacity: 0 !important; visibility: hidden; transition: opacity .3s; }
   .in-partenza:hover { background: rgba(240,185,23,.14); }
   .ip-foto { flex: none; width: 66px; aspect-ratio: 16 / 10; border-radius: 2px; background: var(--petrolio) center / cover no-repeat; }
@@ -429,6 +436,22 @@
     .in-partenza { top: calc(max(12px, env(safe-area-inset-top)) + 34px); left: 16px; right: 16px; transform: none; max-width: none; }
     .ip-tit { white-space: normal; }
     body.ha-barra .in-partenza { top: calc(max(12px, env(safe-area-inset-top)) + 96px); }
+  }
+
+
+  /* 12/10/2026, dalla foto del telefono di Luca */
+  /* le voci si vanno a capo solo fra una parola e l'altra: niente «L'Enneagram-ma» */
+  .voce .t { -webkit-hyphens: manual; hyphens: manual; overflow-wrap: normal; word-break: normal; }
+  /* la riga sotto la voce parte dal lato da cui parte la scritta */
+  .voce[data-lato="d"] .t { background-position: 100% 100%; }
+  .voce[data-lato="c"] .t { background-position: 50% 100%; }
+  @media (max-width: 600px) {
+    /* con le tre foto in fila sotto la figura, «Rivedi l'ingresso» e «Il mio account» si fanno da parte */
+    body.scelto .rivedi, body.scelto .ae-nh-piede { opacity: 0 !important; pointer-events: none; transition: opacity .3s; }
+    /* nella zona «In partenza» le righe vanno a capo invece di essere tagliate */
+    .ip-tit { font-size: 16.5px; }
+    .ip-qd { white-space: normal; overflow: visible; }
+    .in-partenza { gap: 10px; padding-right: 10px; }
   }
 
 
