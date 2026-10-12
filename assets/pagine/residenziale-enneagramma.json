@@ -1,0 +1,88 @@
+{
+ "slug": [
+  "residenziale-enneagramma"
+ ],
+ "punto": 4,
+ "titolo": "Residenziale e certificazione",
+ "apertura": "Una settimana in presenza ogni anno e, per chi vuole, la strada verso la certificazione.",
+ "descrizione": "La settimana residenziale dell'Accademia Enneagramma con Mauro Vedovello e Luca Giorgetti, una settimana in presenza una volta all'anno, e il percorso di certificazione.",
+ "testata": "testata4",
+ "blocchi": [
+  {
+   "tipo": "testo",
+   "titolo": "Il cuore del percorso",
+   "testo": [
+    "La settimana residenziale è il cuore del percorso dell'Accademia. La guidano Mauro Vedovello e Luca Giorgetti ed è pensata per chi vuole portare l'Enneagramma nella propria vita in modo concreto, attraversando il velo della personalità verso la propria natura essenziale.",
+    "Le giornate alternano lo studio, gli esercizi esperienziali e le pratiche di auto-osservazione, con un ritmo che favorisce il contatto con sé e la condivisione nel gruppo.",
+    "Si svolge una volta all'anno e si può ripetere. La Masterclass Enneagramma prepara a questa settimana."
+   ]
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Che cosa comprende",
+   "voci": [
+    [
+     "Sei notti in pensione completa",
+     "Per lasciare fuori ogni pensiero pratico e dedicarsi al proprio percorso."
+    ],
+    [
+     "Gli incontri con Luca e Mauro",
+     "Una guida esperta per applicare l'Enneagramma alla propria vita."
+    ],
+    [
+     "Le attività esperienziali",
+     "Per osservare i propri schemi in azione e trovare nuove possibilità di scelta."
+    ],
+    [
+     "Il confronto nel gruppo",
+     "Spazi di condivisione guidata, in un gruppo che rispecchia e sostiene."
+    ],
+    [
+     "Le pratiche quotidiane",
+     "Centratura e auto-osservazione, per portare nel corpo ciò che si impara."
+    ],
+    [
+     "I pasti e i momenti liberi",
+     "Per conoscere gli altri partecipanti anche fuori dagli incontri."
+    ]
+   ]
+  },
+  {
+   "tipo": "lettera",
+   "titolo": "Perché la proponiamo",
+   "testo": [
+    "L'incontro con l'Enneagramma ha rivoluzionato la nostra vita. Nelle relazioni c'è un prima e un dopo Enneagramma.",
+    "Qualunque sia la ragione che ti ha spinto fino a qui, ci auguriamo di poterti trasmettere che in questo percorso c'è un'anima. O meglio, c'è un tendere verso l'anima. Non abbiamo la presunzione di sostenere che sia l'unica via o la migliore. È quella che ha dato una svolta alla nostra vita e che quindi possiamo realisticamente restituire."
+   ],
+   "firma": "Mauro e Luca"
+  },
+  {
+   "tipo": "testo",
+   "titolo": "La certificazione",
+   "id": "certificazione",
+   "testo": [
+    "Per chi vuole insegnare e far conoscere l'Enneagramma, o integrarlo nel proprio lavoro, dopo averci lavorato su di sé.",
+    "Ci si arriva dalla settimana residenziale, che si può ripetere negli anni e può portare alla certificazione per l'insegnamento e la divulgazione."
+   ]
+  },
+  {
+   "tipo": "nota",
+   "testo": "Requisiti e tempi della certificazione: testo in preparazione."
+  },
+  {
+   "tipo": "testo",
+   "titolo": "L'ultima edizione",
+   "testo": [
+    "Dal 12 al 18 giugno 2026 alla Buca di Michelangelo, a Caprese Michelangelo (Arezzo), nel cuore della Toscana."
+   ]
+  },
+  {
+   "tipo": "nota",
+   "testo": "Date, luogo e quote della prossima edizione: in preparazione. Scrivici per sapere quando si aprono le iscrizioni."
+  }
+ ],
+ "azione": [
+  "Scrivici per la prossima edizione",
+  "/contatti/"
+ ]
+}

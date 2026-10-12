@@ -1,4 +1,4 @@
-/* Accademia - pagine. Costruito da costruisci.py il 12/10/2026 18:52 da index.html: non modificare a mano. */
+/* Accademia - pagine. Costruito da costruisci.py il 12/10/2026 19:28 da index.html: non modificare a mano. */
 @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
@@ -334,3 +334,8 @@ body.ae-pp-pieno .pg-blocco { margin: 0; }
 body.ae-pp-pieno .ae-pp-incorniciato { width: 100%; margin: 0; transform: none; }
 body.ae-pp-pieno .ae-pp-storia iframe { height: calc(100dvh - 68px); min-height: 0; border: 0; border-radius: 0; }
 @media (max-width: 600px) { body.ae-pp-pieno .ae-pp-storia iframe { height: calc(100dvh - 52px); } }
+
+/* telefono (12/10/2026): niente parole spezzate; la testata non lascia trasparire il testo che le passa sotto */
+.ae-pp, .ae-pp * { -webkit-hyphens: manual; hyphens: manual; }
+.ae-pp-testa { background: rgba(14, 60, 73, .97) !important; border-bottom: 1px solid rgba(249,248,235,.08); }
+.pg-titolo, .pg-apertura, .ae-pp-tipo h2, .pg-blocco h2 { overflow-wrap: normal; word-break: normal; }

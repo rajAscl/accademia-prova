@@ -1,0 +1,119 @@
+{
+ "slug": [
+  "laccademia"
+ ],
+ "titolo": "L'Accademia",
+ "apertura": "Un percorso per conoscere l'Enneagramma da dentro, che unisce lo studio all'esperienza diretta.",
+ "descrizione": "Il percorso dell'Accademia Enneagramma: Masterclass online, settimana residenziale e certificazione, con l'Enneagramma delle Personalità e la Quarta Via.",
+ "testata": "testata8",
+ "blocchi": [
+  {
+   "tipo": "testo",
+   "titolo": "Due sistemi, una sorgente pulita",
+   "testo": [
+    "Il nostro approccio intreccia l'Enneagramma delle Personalità di Ichazo e Naranjo con l'enneagramma dei processi di Gurdjieff, che appartiene alla Quarta Via.",
+    "Sono due sistemi che vanno avanti in parallelo, e di ogni idea diciamo da quale dei due viene."
+   ]
+  },
+  {
+   "tipo": "citazione",
+   "testo": "Per comprendere l'enneagramma bisogna pensarlo in movimento. Un enneagramma immobile è un simbolo morto; il simbolo vivente è in movimento.",
+   "autore": "G. I. Gurdjieff, in P. D. Ouspensky, Frammenti di un insegnamento sconosciuto"
+  },
+  {
+   "tipo": "tappe",
+   "titolo": "Un percorso in tre passi",
+   "voci": [
+    {
+     "titolo": "Masterclass Enneagramma",
+     "testo": "Le basi, online, da seguire quando vuoi.",
+     "link": "/corsi-accademia/"
+    },
+    {
+     "titolo": "Settimana residenziale",
+     "testo": "Una settimana all'anno in presenza, che si può ripetere.",
+     "link": "/residenziale-enneagramma/"
+    },
+    {
+     "titolo": "Certificazione",
+     "testo": "Per l'insegnamento e la divulgazione.",
+     "link": "/residenziale-enneagramma/#certificazione"
+    }
+   ]
+  },
+  {
+   "tipo": "nota",
+   "testo": "Accanto al percorso c'è la Masterclass Differenziatori, per riconoscere i tipi quando si è in dubbio fra due."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "La settimana residenziale",
+   "intro": "È il cuore dell'Accademia: una settimana per studiare l'Enneagramma e farne esperienza.",
+   "voci": [
+    [
+     "Lezioni",
+     "La struttura dell'Enneagramma e il modo di portarlo nella vita di tutti i giorni."
+    ],
+    [
+     "Panel",
+     "Persone dello stesso tipo raccontano come vivono, e chi ascolta vede il tipo com'è vissuto da chi lo ha."
+    ],
+    [
+     "I tre centri",
+     "Esercizi che coinvolgono il corpo, le emozioni e la mente."
+    ],
+    [
+     "Osservazione di sé",
+     "Pratiche guidate per accorgersi delle proprie reazioni automatiche mentre accadono."
+    ],
+    [
+     "Condivisione",
+     "Momenti di gruppo per elaborare l'esperienza con i formatori e con gli altri partecipanti."
+    ]
+   ]
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Accanto alla settimana",
+   "intro": "Il percorso continua prima e dopo la residenziale.",
+   "voci": [
+    [
+     "Masterclass online",
+     "Il corso introduttivo, utile anche prima della settimana per arrivare con delle basi solide."
+    ],
+    [
+     "Podcast",
+     "Le puntate gratuite dell'Accademia, a cadenza regolare."
+    ],
+    [
+     "Consulenze individuali",
+     "Un percorso su misura con uno dei due formatori, per approfondire un aspetto della propria personalità."
+    ],
+    [
+     "Certificazione",
+     "Per chi vuole integrare l'Enneagramma nel proprio lavoro o farne il proprio lavoro: formatori, coach, counselor, terapeuti."
+    ]
+   ]
+  },
+  {
+   "tipo": "testo",
+   "titolo": "L'intervista di tipo",
+   "testo": [
+    "Nell'Accademia insegniamo il processo di intervista di tipo, che viene dalla Tradizione Narrativa."
+   ]
+  },
+  {
+   "tipo": "testo",
+   "titolo": "Per chi è",
+   "testo": [
+    "Per chi studia l'Enneagramma e per chi ha cominciato un lavoro su di sé.",
+    "Per chi accompagna altre persone e vuole portare l'Enneagramma nel proprio lavoro: psicoterapeuti e psicologi, counselor e coach, insegnanti e genitori, guide spirituali."
+   ]
+  }
+ ],
+ "azione": [
+  "La settimana residenziale",
+  "/residenziale-enneagramma/"
+ ],
+ "parte": "L'Accademia"
+}

@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 18:52 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 19:28 da index.html: non modificare a mano. */
 @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
@@ -453,6 +453,15 @@
     .ip-qd { white-space: normal; overflow: visible; }
     .in-partenza { gap: 10px; padding-right: 10px; }
   }
+  /* su schermo largo, aperta una parte, la zona si sposta in alto a sinistra: in centro la coprirebbero le foto delle voci */
+  @media (min-width: 761px) {
+    .in-partenza { transition: opacity .8s, visibility 0s .8s, background-color .25s, left .5s, top .5s, transform .5s; }
+    body.scelto .in-partenza { left: 20px; top: 52px; transform: none; max-width: min(330px, calc(50vw - 150px)); }
+    body.scelto .ip-tit, body.scelto .ip-qd { white-space: normal; overflow: visible; }
+    html:has(.prove:not(.chiusa)) body.scelto .in-partenza { top: auto; }
+  }
+  .voce .frase { -webkit-hyphens: manual; hyphens: manual; }
+  @media (min-width: 761px) and (max-width: 1100px) { body.scelto .ip-foto { display: none; } }
 
 
   /* barra delle prove: sempre in vista in alto; i bottoni vanno a capo invece di uscire dallo schermo,

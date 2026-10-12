@@ -1,0 +1,26 @@
+{
+ "slug": [
+  "la-storia"
+ ],
+ "punto": 1,
+ "titolo": "La storia",
+ "apertura": "Come la figura è arrivata fino a noi, da Gurdjieff ai primi libri sui nove tipi.",
+ "descrizione": "La storia dell'enneagramma su una mappa: il viaggio di Gurdjieff e la strada della figura fino all'Enneagramma delle Personalità, tappa per tappa, con le fonti.",
+ "blocchi": [
+  {
+   "tipo": "storia"
+  },
+  {
+   "tipo": "testo",
+   "testo": [
+    "La figura arriva in Occidente con Gurdjieff, e nella Quarta Via è l'enneagramma dei processi. Le sue radici più antiche restano incerte. Sulla stessa figura l'Enneagramma delle Personalità descrive nove tipi: questo sistema lo dobbiamo a Oscar Ichazo e a Claudio Naranjo.",
+    "Per ogni tappa diciamo da dove viene la notizia e quanto è certa."
+   ]
+  }
+ ],
+ "azione": [
+  "Perché nove punti",
+  "/l-enneagramma/"
+ ],
+ "pieno": true
+}

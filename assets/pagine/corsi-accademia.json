@@ -1,0 +1,18 @@
+{
+ "slug": ["corsi-accademia", "corsi"],
+ "punto": 2,
+ "titolo": "Masterclass online",
+ "apertura": "Due corsi online per cominciare e per distinguere un tipo dall'altro.",
+ "descrizione": "Le Masterclass online dell'Accademia Enneagramma: le basi in otto ore e 34 lezioni, e 36 confronti diretti fra i tipi.",
+ "blocchi": [
+  { "tipo": "corsi", "voci": [
+   { "titolo": "Masterclass Enneagramma", "img": "corso-me", "ruolo": "Luca Giorgetti e Mauro Vedovello", "testo": "Una comprensione chiara e solida dell'Enneagramma: le basi in otto ore e 34 lezioni, da seguire quando vuoi.", "dettagli": ["Livello principiante", "Prepara alla settimana residenziale", "229 €"], "link": ["Apri la pagina del corso", "/corsi-accademia/masterclass-enneagramma/"] },
+   { "titolo": "Masterclass Differenziatori", "img": "corso-md", "ruolo": "Mauro Vedovello", "testo": "Una masterclass pratica per distinguere con chiarezza i nove tipi, con 36 confronti diretti fra un tipo e l'altro.", "dettagli": ["Un'ora, tre lezioni", "Livello intermedio", "79 €"], "link": ["Apri la pagina del corso", "/corsi-accademia/masterclass-differenziatori/"] }
+  ] },
+  { "tipo": "testo", "titolo": "Come si seguono", "testo": [
+   "Si acquistano sul sito e si possono seguire subito, dal computer o dal telefono. Ascolti, studi, metti in pausa e riprendi quando vuoi."
+  ] },
+  { "tipo": "nota", "testo": "Chi è già iscritto entra nei corsi da «Il mio account», in fondo alla pagina." }
+ ],
+ "azione": ["La settimana residenziale", "/residenziale-enneagramma/"]
+}

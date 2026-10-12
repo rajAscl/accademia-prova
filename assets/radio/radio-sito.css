@@ -33,3 +33,4 @@ body { font-size: 19px; }
 }
 .soglia button:hover { background: rgba(240,185,23,.14) !important; }
 .scala { background: rgba(10,40,48,.45) !important; }
+* { -webkit-hyphens: manual !important; hyphens: manual !important; }

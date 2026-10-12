@@ -1,0 +1,35 @@
+{
+ "slug": [
+  "podcast"
+ ],
+ "punto": 5,
+ "titolo": "Podcast e video",
+ "apertura": "Le puntate del podcast dell'Accademia, dalla più recente alla prima, e gli altri video del canale.",
+ "descrizione": "Il podcast e i video dell'Accademia Enneagramma con Luca Giorgetti e Mauro Vedovello: tutte le puntate e gli altri video del canale.",
+ "blocchi": [
+  {
+   "tipo": "puntate",
+   "titolo": "Le puntate"
+  },
+  {
+   "tipo": "griglia",
+   "titolo": "Altri video",
+   "voci": [
+    [
+     "I Differenziatori dell'Enneagramma",
+     "5 min",
+     "R0uukD-l9fM"
+    ],
+    [
+     "I 3 centri di intelligenza",
+     "38 min",
+     "yLwsQObX_pM"
+    ]
+   ]
+  }
+ ],
+ "azione": [
+  "Il canale YouTube",
+  "https://www.youtube.com/@accademiaenneagramma"
+ ]
+}

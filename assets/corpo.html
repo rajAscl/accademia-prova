@@ -1,0 +1,59 @@
+<div class="fondo" aria-hidden="true"></div>
+
+<div class="marchio" id="marchio"></div>
+<a class="contatti" id="link-contatti" href="#contatti"></a>
+<a class="in-partenza" id="in-partenza" href="#corsi-in-partenza" hidden></a>
+<button class="rivedi" id="rivedi" type="button"></button>
+<p class="suggerimento" id="suggerimento" aria-live="polite"></p>
+<div class="varianti" id="varianti" role="group" aria-label="Opzione">
+  <span>Opzione</span>
+  <button type="button" data-v="1" aria-pressed="true">1</button>
+  <button type="button" data-v="2" aria-pressed="false">2</button>
+</div>
+
+<main class="scena" id="scena">
+  <div class="figura" id="figura">
+    <svg class="disegno" id="disegno" viewBox="0 0 1000 1000" aria-hidden="true">
+      <g class="cerchio-g"><circle class="cerchio" id="cerchio" cx="500" cy="500" r="310"/></g>
+      <path class="tri" id="tri"/>
+      <path class="esa" id="esa"/>
+      <g id="punti"></g>
+      <circle class="penna" id="penna" r="3"/>
+    </svg>
+    <button class="entra" id="entra" type="button"></button>
+    <nav id="menu" aria-label="Menu principale">
+      <div id="etichette"></div>
+      <button class="centro" id="centro" type="button"></button>
+    </nav>
+    <div class="striscia" id="striscia" aria-hidden="true"></div>
+  </div>
+</main>
+
+<section class="pagina" id="pagina" role="dialog" aria-modal="true" aria-labelledby="pg-titolo" hidden>
+  <header class="pg-testa">
+    <button class="pg-torna" id="pg-torna" type="button"><span></span></button>
+    <span class="pg-marchio" id="pg-marchio"></span>
+  </header>
+  <div class="pg-dentro" id="pg-dentro"></div>
+</section>
+
+<!-- =====================================================================
+     PROVE DI STILE (10/10/2026)
+     Si scelgono con ?stile=A, ?stile=A+B+E+G … oppure dal menu "Stile" in basso a destra.
+     Ogni stile ha il suo blocco CSS (html[data-stile~="X"]) e il suo blocco JS (STILI.X).
+     Per tenerne uno e buttare il resto si cancellano i blocchi degli altri.
+     ===================================================================== -->
+
+<div class="prove" id="prove" role="region" aria-label="Prove">
+  <div class="riga" role="group" aria-label="Prove di stile">
+    <button type="button" class="freccia" id="stile-prima" aria-label="Stile precedente">&lsaquo;</button>
+    <div class="bottoni" id="riga-stili"></div>
+    <button type="button" class="freccia" id="stile-dopo" aria-label="Stile successivo">&rsaquo;</button>
+    <button type="button" class="tutti-stili" id="tutti-stili" aria-expanded="false">Tutti gli stili</button>
+  </div>
+  <div class="riga" id="riga-opzioni" role="group" aria-label="Dopo aver scelto una parte"><span class="etichetta-riga">Le altre voci</span></div>
+  <div class="riga" id="riga-immagini" role="group" aria-label="Immagini delle voci"><span class="etichetta-riga">Immagini delle voci</span></div>
+  <p class="aiuto" id="aiuto-prove"></p>
+  <button type="button" class="chiudi-prove" id="chiudi-prove" aria-label="Nascondi la barra delle prove">&times;</button>
+  <button type="button" class="riapri" id="riapri-prove">Mostra le prove</button>
+</div>

@@ -1,0 +1,33 @@
+{
+ "slug": ["chi-siamo"],
+ "punto": 9,
+ "titolo": "Chi siamo",
+ "apertura": "Due formatori con più di dieci anni di Enneagramma, che da strade diverse hanno dato vita a un progetto comune.",
+ "descrizione": "Mauro Vedovello e Luca Giorgetti, cofondatori dell'Accademia Enneagramma: chi sono, come si sono formati, come insegnano.",
+ "blocchi": [
+  { "tipo": "testo", "testo": [
+   "Negli anni abbiamo incontrato migliaia di persone in cerca di autenticità, di una direzione e di crescita interiore. Da questo ascolto nasce la nostra proposta: percorsi pratici e strutturati che portano la saggezza dell'Enneagramma nella vita di tutti i giorni, nelle relazioni e nel lavoro."
+  ] },
+  { "tipo": "lista", "titolo": "Come insegniamo", "voci": [
+   ["Una visione spirituale", "Per noi l'Enneagramma è anche una via di risveglio. Mostra i meccanismi dell'identità e lascia più libertà interiore."],
+   ["La persona al centro", "Ogni percorso è unico e ne rispettiamo i tempi, la sensibilità e i bisogni."],
+   ["La tradizione con uno sguardo di oggi", "Rispettiamo le radici spirituali e simboliche dell'Enneagramma e le rendiamo comprensibili con un linguaggio chiaro, esperienze concrete e strumenti da usare nel quotidiano."]
+  ] },
+  { "tipo": "persone", "voci": [
+   { "nome": "Luca Giorgetti", "ruolo": "Cofondatore", "img": "luca", "testo": [
+    "Nato nel 1987, da oltre dieci anni lavora con l'Enneagramma in ambito personale, sociale e professionale.",
+    "Viene dalla Quarta Via, vissuta in un gruppo e con i Movimenti. Ha cominciato a 24 anni a studiare i diversi approcci all'Enneagramma e ne ha ricavato un metodo suo, pratico, che divulga con un linguaggio semplice.",
+    "Ha scritto «Enneagramma, i Nove abitanti della Terra» (MacroEdizioni) ed «Enneagramma, una porta sull'Essere».",
+    "Laureato in Farmacia, ha fatto il farmacista per dieci anni prima di dedicarsi alla formazione.",
+    "È docente certificato EPTP secondo la Narrative Tradition di Helen Palmer e David Daniels."
+   ], "link": ["I libri di Luca", "https://www.lucagiorgetti.com/pubblicazioni/"] },
+   { "nome": "Mauro Vedovello", "ruolo": "Cofondatore", "img": "mauro", "testo": [
+    "Nato nel 1970, è docente, filosofo e formatore certificato in Enneagramma.",
+    "Ha fondato la scuola NoveVie ed è il rappresentante italiano della Narrative Tradition (ESNT).",
+    "Si è formato negli Stati Uniti e nel mondo con Helen Palmer, David Daniels, Russ Hudson, Beatrice Chestnut, Uranio Paes e Ginger Lapid-Bogda.",
+    "Si è laureato in filosofia con una tesi sulle tradizioni sapienziali e su Gurdjieff. Accompagna studenti e professionisti con seminari, eventi internazionali e percorsi individuali."
+   ] }
+  ] }
+ ],
+ "azione": ["Scrivici", "/contatti/"]
+}

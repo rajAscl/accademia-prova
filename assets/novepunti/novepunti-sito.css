@@ -28,3 +28,14 @@ figure.vivo { color: #0E3A46; background: #F9F8EB; border: 0; box-shadow: 0 30px
 .per-continuare h3 { color: #F0B917 !important; }
 .per-continuare a { color: #F0B917 !important; text-decoration-color: rgba(240,185,23,.45) !important; }
 .giu { color: rgba(249,248,235,.75); }
+
+/* telefono (12/10/2026, foto di Luca): niente parole spezzate a fine riga, etichette che vanno a capo, niente doppia apertura */
+* { -webkit-hyphens: manual !important; hyphens: manual !important; }
+.occhiello { display: none; }
+.apertura { padding-top: 10px !important; }
+.fonte { white-space: normal !important; line-height: 1.35; display: inline; padding: 2px 6px; }
+@media (max-width: 600px) {
+  body { font-size: 19px; }
+  .sistema { letter-spacing: .06em; font-size: 10.5px; }
+  .apertura h1 { font-size: 46px; }
+}

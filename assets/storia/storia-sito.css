@@ -67,3 +67,4 @@ footer { background: rgba(8,34,42,.82); }
 
 /* la testata della mappa non c'è: la mappa prende tutto lo spazio, la linea del tempo resta in fondo */
 body { grid-template-rows: 1fr auto !important; }
+* { -webkit-hyphens: manual !important; hyphens: manual !important; }

@@ -1,0 +1,164 @@
+{
+ "slug": [
+  "i-9-tipi"
+ ],
+ "parte": "Approfondire",
+ "titolo": "I nove tipi",
+ "apertura": "Nove modi di stare al mondo, ognuno con la sua spinta e la sua strada di crescita.",
+ "descrizione": "I nove tipi dell'Enneagramma delle Personalità: che cosa li muove, le frasi tipiche e gli spunti di crescita di ciascuno.",
+ "blocchi": [
+  {
+   "tipo": "indice-tipi"
+  },
+  {
+   "tipo": "tipi",
+   "voci": [
+    {
+     "n": 1,
+     "testo": "I tipi 1 sono guidati dal desiderio di migliorare sé stessi e il mondo circostante. Hanno un forte senso etico e morale e tendono a essere perfezionisti, responsabili e disciplinati. Cercano la giustizia e l'ordine, avendo standard elevati sia per sé stessi che per gli altri. Sono mossi dalla convinzione che, attraverso lo sforzo e il controllo, sia possibile eliminare gli errori e creare un mondo migliore. Tuttavia, questa ricerca della perfezione può renderli critici e insoddisfatti, sia nei confronti di sé stessi che degli altri. Hanno difficoltà a rilassarsi e a concedersi di sbagliare.",
+     "frasi": [
+      "Chi fa da sé fa per tre.",
+      "Per me è importante che io domani sia migliore di oggi.",
+      "La mia integrità morale è fondamentale per me."
+     ],
+     "crescita": [
+      "Imparare a tollerare l'imperfezione e a dare valore al cammino oltre che al risultato.",
+      "Coltivare la compassione verso sé stessi e gli altri, accettando che l'errore è parte della crescita.",
+      "Sviluppare la capacità di lasciarsi andare e godere dei momenti di spontaneità."
+     ],
+     "passione": "l'ira"
+    },
+    {
+     "n": 2,
+     "testo": "I tipi 2 sono empatici, generosi e attenti ai bisogni altrui. Il loro desiderio principale è sentirsi amati e apprezzati per il loro aiuto. Tendono a mettere le necessità degli altri prima delle proprie, arrivando spesso a sacrificare il proprio benessere pur di sentirsi indispensabili. Hanno una grande capacità di entrare in sintonia con le persone, ma possono sviluppare aspettative inconsce di ricevere riconoscimento per i loro sforzi. Questo può portarli a muoversi in modo da ottenere attenzione e affetto.",
+     "frasi": [
+      "Mi piace che le persone a cui tengo si rivolgano a me in cerca di aiuto e consiglio.",
+      "Mi viene spontaneo intervenire per aiutare le persone in situazioni imbarazzanti.",
+      "Spesso conosco i bisogni degli altri ancor prima che me li comunichino."
+     ],
+     "crescita": [
+      "Imparare a riconoscere e soddisfare i propri bisogni senza sentirsi in colpa.",
+      "Porre limiti più chiari nelle relazioni, senza dare per ottenere amore in cambio.",
+      "Accettare che il proprio valore non dipende dall'essere necessari agli altri."
+     ],
+     "passione": "l'orgoglio"
+    },
+    {
+     "n": 3,
+     "testo": "I tipi 3 sono ambiziosi, dinamici e orientati al successo. La loro attenzione va agli obiettivi e al riconoscimento dei risultati. Hanno una grande capacità di adattamento e sanno come apparire competenti e vincenti. Tuttavia, possono essere talmente presi dall'immagine di successo da perdere il contatto con il proprio vero sé. La paura del fallimento li spinge a lavorare instancabilmente, rischiando di trascurare le proprie emozioni e relazioni.",
+     "frasi": [
+      "Valuto il tempo in termini di occasioni da cogliere.",
+      "Partecipare non sempre è sufficiente. Punto al primo posto.",
+      "Essere visto come una persona di successo è molto importante per me."
+     ],
+     "crescita": [
+      "Riscoprire il proprio valore al di là delle realizzazioni esterne.",
+      "Essere più autentici nelle relazioni, senza dover dimostrare sempre qualcosa.",
+      "Rallentare il ritmo e imparare ad apprezzare il momento presente."
+     ],
+     "passione": "la vanità"
+    },
+    {
+     "n": 4,
+     "testo": "I tipi 4 sono profondamente sensibili e creativi, con un forte bisogno di autenticità e significato. Vivono intensamente le emozioni e spesso si sentono diversi o fuori posto. Hanno una grande capacità di esprimere il proprio mondo interiore attraverso l'arte, la scrittura o altre forme creative. Tuttavia, possono cadere nella malinconia e nel confronto costante con gli altri, sentendosi incompleti o carenti. Tendono a idealizzare il passato o a desiderare un futuro ideale, rischiando di perdere il contatto con il presente.",
+     "frasi": [
+      "Spesso mi sento incompreso o diverso dagli altri.",
+      "Le emozioni intense fanno parte della mia vita quotidiana.",
+      "La mia sensibilità è sia un dono che un peso."
+     ],
+     "crescita": [
+      "Accettare e valorizzare il presente senza idealizzare ciò che manca.",
+      "Sviluppare un senso di appartenenza senza dipendere dal riconoscimento esterno.",
+      "Imparare a bilanciare il mondo interiore con le necessità della realtà quotidiana."
+     ],
+     "passione": "l'invidia"
+    },
+    {
+     "n": 5,
+     "testo": "I tipi 5 sono riservati, analitici e profondamente riflessivi. Desiderano comprendere il mondo attraverso l'osservazione e l'accumulo di conoscenze. Spesso preferiscono la solitudine per recuperare le forze e possono apparire distaccati o poco coinvolti emotivamente. La loro paura principale è di sentirsi sopraffatti dagli altri, motivo per cui tendono a preservare il proprio spazio e la propria indipendenza.",
+     "frasi": [
+      "Ho bisogno di tempo per raccogliere informazioni prima di agire.",
+      "Preferisco osservare piuttosto che partecipare attivamente.",
+      "Mi sento svuotato se devo interagire troppo con le persone."
+     ],
+     "crescita": [
+      "Imparare a fidarsi degli altri e a condividere le proprie emozioni.",
+      "Bilanciare la necessità di autonomia con il coinvolgimento nelle relazioni.",
+      "Praticare la presenza e l'azione, evitando di rimanere troppo nel pensiero astratto."
+     ],
+     "passione": "l'avarizia"
+    },
+    {
+     "n": 6,
+     "testo": "I tipi 6 sono persone affidabili, leali e orientate alla sicurezza. Sono dotati di un forte senso di responsabilità e cercano stabilità e protezione in un mondo che percepiscono come incerto. La loro mente analitica è sempre attiva nell'esplorare scenari per anticipare problemi e rischi. Questo li rende prudenti e attenti, ma può anche renderli inquieti, dubbiosi e sospettosi. Tendono a oscillare tra diffidenza e ricerca di figure guida a cui affidarsi. Possono essere sia ribelli che conformisti, a seconda della loro percezione della sicurezza. La loro crescita passa attraverso lo sviluppo della fiducia in sé stessi e nella vita.",
+     "frasi": [
+      "Cerco di essere preparato per il peggio, anche quando tutto sembra andare bene.",
+      "Ho bisogno di punti di riferimento solidi prima di prendere una decisione.",
+      "A volte fatico a fidarmi delle persone, ma quando lo faccio sono profondamente leale."
+     ],
+     "crescita": [
+      "Imparare a stare con la paura senza lasciarsi sopraffare dai pensieri su ciò che potrebbe accadere.",
+      "Coltivare la fiducia nelle proprie capacità decisionali.",
+      "Dare fiducia a sé stessi senza cercare fuori un'autorità a cui affidarsi o contro cui ribellarsi."
+     ],
+     "passione": "la paura"
+    },
+    {
+     "n": 7,
+     "testo": "I tipi 7 sono entusiasti, curiosi e sempre alla ricerca di nuove esperienze. Amano la libertà e hanno un'energia contagiosa, che li spinge a esplorare il mondo con ottimismo e creatività. Temono la noia e il dolore, quindi tendono a riempire la loro vita di attività stimolanti e piani avventurosi. Tuttavia, questa continua ricerca del piacere può portarli a evitare le emozioni difficili e gli impegni che pesano. Il loro percorso di crescita consiste nell'imparare a rallentare, a vivere il presente e ad accogliere anche gli aspetti meno piacevoli della vita, senza doverli necessariamente evitare o distrarre con nuove esperienze.",
+     "frasi": [
+      "Ho sempre un progetto brillante verso il quale sono lanciato.",
+      "La routine mi soffoca, la noia è un sentimento che cerco di evitare il più possibile.",
+      "Spesso quando una situazione diventa pesante, preferisco cambiare aria piuttosto che affrontarla."
+     ],
+     "crescita": [
+      "Imparare a restare nel momento presente, senza cercare sempre nuove distrazioni.",
+      "Accogliere e affrontare anche le emozioni difficili, senza evitarle.",
+      "Coltivare la disciplina e l'impegno in progetti a lungo termine."
+     ],
+     "passione": "la gola"
+    },
+    {
+     "n": 8,
+     "testo": "I tipi 8 sono forti, assertivi e determinati. Hanno un grande senso di giustizia e proteggono con forza ciò in cui credono. Non temono il confronto e preferiscono avere il controllo delle situazioni per sentirsi al sicuro. La loro energia intensa può farli apparire dominanti, ma in realtà il loro desiderio profondo è proteggere sé stessi e coloro che amano. Temono la vulnerabilità e quando si sentono minacciati possono reagire con forza. Il loro percorso di crescita consiste nell'imparare a fidarsi degli altri, ad aprirsi emotivamente e a riconoscere che la vera forza risiede anche nella capacità di essere vulnerabili.",
+     "frasi": [
+      "Preferisco dire le cose come stanno, anche se possono dare fastidio.",
+      "Non sopporto le ingiustizie e mi sento in dovere di combatterle.",
+      "Mostrare debolezza è pericoloso, meglio essere sempre forti.",
+      "Non sopporto i voltagabbana, le persone che cambiano bandiera a seconda della loro convenienza."
+     ],
+     "crescita": [
+      "Imparare a fidarsi degli altri e a delegare senza paura di perdere il controllo.",
+      "Riconoscere che la vulnerabilità non è una debolezza, ma una forza.",
+      "Dare alla rabbia una forma che non ferisca."
+     ],
+     "passione": "la lussuria"
+    },
+    {
+     "n": 9,
+     "testo": "I tipi 9 sono persone pacifiche, accomodanti e orientate all'armonia. Desiderano vivere in un ambiente sereno e tendono a evitare i conflitti, spesso adattandosi agli altri per mantenere la pace. Sono empatici e capaci di comprendere molteplici punti di vista, ma possono faticare a far valere le proprie opinioni e bisogni. Questa tendenza a evitare il confronto può portarli all'inerzia e a rimandare, preferendo non prendere decisioni piuttosto che rischiare lo scontro. La loro crescita passa attraverso il riconoscimento del proprio valore e della propria individualità, imparando a prendere posizione senza paura.",
+     "frasi": [
+      "Preferisco non creare problemi, quindi tendo ad adattarmi.",
+      "Mi è difficile dire di no, anche quando qualcosa non mi va bene.",
+      "Evito i conflitti il più possibile, perché mi fanno sentire a disagio.",
+      "Scegli tu, a me va bene tutto."
+     ],
+     "crescita": [
+      "Imparare a riconoscere e affermare i propri bisogni senza paura del conflitto.",
+      "Decidere, invece di lasciare che le cose accadano.",
+      "Trovare un equilibrio tra armonia esterna e autenticità personale."
+     ],
+     "passione": "l'accidia"
+    }
+   ]
+  },
+  {
+   "tipo": "nota",
+   "testo": "Riconoscere il proprio tipo richiede onestà e tempo. Per chi è in dubbio fra due tipi c'è la Masterclass Differenziatori."
+  }
+ ],
+ "azione": [
+  "La Masterclass Differenziatori",
+  "/corsi-accademia/masterclass-differenziatori/"
+ ]
+}

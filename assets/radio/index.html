@@ -131,6 +131,11 @@ a { color: inherit; }
   .nome { font-size: 13px; }
   .spia span { display: none; }
 }
+@media (max-width: 380px) {
+  .comandi { gap: 4px; }
+  .salto { width: 82px; letter-spacing: .06em; gap: 6px; padding: 12px 2px; }
+  .manopola { width: 120px; height: 120px; }
+}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 <link rel="stylesheet" href="radio-sito.css">
@@ -339,13 +344,22 @@ a { color: inherit; }
     }
   }
 
+  var SITO = "";   // sul sito la costruzione lo toglie: i rimandi restano sul sito su cui gira
   // il sistema e il rimando alla puntata sono quelli dello spezzone che suona
   function mostra(i) {
     if (i !== mostrata) return;
     var sp = cur(i);
     $("sistema").className = "sistema " + sp.sistema;
     $("sistema").lastElementChild.textContent = sp.sistema === "qv" ? "Quarta Via" : "Enneagramma delle Personalità";
-    $("intero").href = "https://www.youtube.com/watch?v=" + sp.yt + "&t=" + Math.floor(sp.da) + "s";
+    // gli spezzoni della masterclass rimandano alla pagina del corso, per chi vuole saperne di più (Luca, 12/10/2026)
+    var intero = $("intero");
+    if (sp.mc) {
+      intero.href = SITO + sp.mc; intero.target = "_top"; intero.removeAttribute("rel");
+      intero.textContent = "Dalla masterclass: saperne di più →";
+    } else {
+      intero.href = "https://www.youtube.com/watch?v=" + sp.yt + "&t=" + Math.floor(sp.da) + "s"; intero.target = "_blank"; intero.rel = "noopener";
+      intero.textContent = "L’episodio intero ↗";
+    }
     sotto.textContent = ""; ultimoCue = null;
   }
 

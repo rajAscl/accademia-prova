@@ -1,0 +1,18 @@
+{
+ "slug": ["contatti"],
+ "titolo": "Contatti",
+ "apertura": "Scrivici, seguici, vieni a trovarci.",
+ "descrizione": "Come contattare l'Accademia Enneagramma: email, telefono, Instagram e YouTube. Siamo a Bergamo e a Cesena.",
+ "blocchi": [
+  { "tipo": "contatti", "voci": [
+   ["Scrivici", "info@accademiaenneagramma.it", "mailto:info@accademiaenneagramma.it"],
+   ["Dove siamo", "Bergamo e Cesena", "Facciamo base in tutte e due le città."],
+   ["Mauro", "335 741 0990", "tel:+393357410990"],
+   ["Luca", "380 540 9278", "tel:+393805409278"],
+   ["Instagram", "@accademiaenneagramma.it", "https://www.instagram.com/accademiaenneagramma.it/"],
+   ["YouTube", "@accademiaenneagramma", "https://www.youtube.com/@accademiaenneagramma"]
+  ] },
+  { "tipo": "modulo", "titolo": "Oppure lasciaci un messaggio" }
+ ],
+ "azione": null
+}

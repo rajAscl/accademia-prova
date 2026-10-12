@@ -1,0 +1,18 @@
+{
+ "slug": [
+  "corsi-in-partenza"
+ ],
+ "punto": 3,
+ "titolo": "Corsi in partenza",
+ "apertura": "I corsi con una data di inizio e le iscrizioni aperte.",
+ "descrizione": "I corsi dell'Accademia Enneagramma in partenza, con le iscrizioni aperte.",
+ "blocchi": [
+  {
+   "tipo": "partenza"
+  }
+ ],
+ "azione": [
+  "Le Masterclass online, da seguire quando vuoi",
+  "/corsi-accademia/"
+ ]
+}
