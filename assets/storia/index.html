@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il viaggio dell'enneagramma</title>
+<meta name="description" content="Il viaggio di Gurdjieff e la storia dell'enneagramma, tappa per tappa. Bozza con fonti verificate.">
+<!-- I font Lora e Lufga (cartella fonts/) sono incorporati in fonts.css, cosi' funzionano anche col doppio clic -->
+
+<style>
+:root {
+  --verde: #1DA5AD;
+  --verde-chiaro: #BFE3E5;
+  --testo: #3A3A3A;
+  --testo-2: #6B6B6B;
+  --fondo: #EDEDED;
+  --carta: #F7F7F7;
+  --linea: #D2D2D2;
+  --terra: #DCDCDC;
+  --mare: #EDEDED;
+  --arancio: #E1764D;
+  --titoli: "Lora", Georgia, serif;
+  --corpo: "Lufga", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--fondo); color: var(--testo);
+  font-family: var(--corpo); font-size: 16px; line-height: 1.5;
+  display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh;
+}
+header {
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  padding: 14px 20px 10px; border-bottom: 1px solid var(--linea);
+}
+header h1 { font-family: var(--titoli); font-weight: 700; font-size: 22px; margin: 0; }
+.bozza {
+  font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--arancio); border: 1px solid var(--arancio); border-radius: 3px; padding: 1px 7px;
+}
+header .sotto { color: var(--testo-2); font-size: 14px; }
+
+main { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(340px, 1fr); min-height: 0; }
+#mappa-box { position: relative; min-height: 0; overflow: hidden; border-right: 1px solid var(--linea); }
+#mappa { width: 100%; height: 100%; display: block; touch-action: none; }
+#mappa .terra { fill: var(--terra); stroke: #FFFFFF; stroke-width: .6; vector-effect: non-scaling-stroke; }
+#mappa .grata { fill: none; stroke: #E3E3E3; stroke-width: .5; vector-effect: non-scaling-stroke; }
+#mappa .tratto { fill: none; stroke: var(--verde); stroke-width: 2.4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+#mappa .tratto.cap2 { stroke-dasharray: 6 5; }
+#mappa .punto { fill: var(--verde); stroke: #FFFFFF; }
+#mappa .punto.contr { fill: var(--arancio); }
+#mappa .punto.via { fill: #FFFFFF; stroke: var(--verde); }
+#mappa .alone { fill: none; stroke: var(--verde); opacity: .5; }
+#mappa .alone.contr { stroke: var(--arancio); }
+#mappa .etichetta { font-family: var(--corpo); fill: var(--testo); paint-order: stroke; stroke: var(--fondo); stroke-linejoin: round; }
+#mappa-msg {
+  position: absolute; inset: auto 12px 12px 12px; font-size: 13px; color: var(--testo-2);
+  background: var(--carta); border: 1px solid var(--linea); border-radius: 4px; padding: 8px 10px; display: none;
+}
+.legenda {
+  position: absolute; left: 12px; top: 12px; font-size: 12px; color: var(--testo-2);
+  background: rgba(247,247,247,.92); border: 1px solid var(--linea); border-radius: 4px; padding: 6px 9px;
+}
+.legenda div { display: flex; align-items: center; gap: 7px; }
+.legenda svg { flex: none; }
+
+#scheda { overflow-y: auto; padding: 22px 24px 18px; display: flex; flex-direction: column; gap: 12px; }
+.capitolo { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--verde); font-weight: 500; }
+.data { font-family: var(--titoli); font-size: 30px; line-height: 1.15; }
+.luogo { color: var(--testo-2); font-size: 14px; }
+#scheda h2 { font-family: var(--titoli); font-weight: 700; font-size: 24px; line-height: 1.2; margin: 2px 0 0; }
+.testo { margin: 0; }
+.citazione { font-family: var(--titoli); font-style: italic; border-left: 3px solid var(--verde); padding: 2px 0 2px 12px; margin: 0; }
+.citazione small { font-family: var(--corpo); font-style: normal; color: var(--testo-2); display: block; font-size: 12px; margin-top: 2px; }
+.certezza { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border-radius: 3px; padding: 2px 9px; width: fit-content; border: 1px solid; }
+.certezza.certo { color: var(--verde); border-color: var(--verde); }
+.certezza.probabile { color: var(--testo-2); border-color: var(--linea); }
+.certezza.controverso { color: #FFFFFF; background: var(--arancio); border-color: var(--arancio); font-weight: 500; }
+.segnaposto {
+  border: 1.5px dashed #BDBDBD; border-radius: 4px; min-height: 110px; display: grid; place-items: center;
+  color: var(--testo-2); font-size: 13px; text-align: center; padding: 12px; background: var(--carta);
+}
+details { border-top: 1px solid var(--linea); padding-top: 8px; font-size: 14px; }
+summary { cursor: pointer; color: var(--verde); font-weight: 500; }
+details ul { padding-left: 18px; margin: 8px 0; }
+details li { margin-bottom: 4px; overflow-wrap: anywhere; }
+details a { color: var(--verde); }
+.nota { color: var(--testo-2); margin: 6px 0 0; }
+.intro p { margin: 0 0 10px; }
+
+.comandi { display: flex; gap: 10px; align-items: center; margin-top: auto; padding-top: 6px; }
+.comandi button {
+  font-family: var(--corpo); font-size: 15px; border: 1px solid var(--verde); color: var(--verde); background: transparent;
+  border-radius: 4px; padding: 9px 16px; cursor: pointer; min-height: 44px;
+}
+.comandi button.avanti { background: var(--verde); color: #FFFFFF; }
+.comandi button:disabled { opacity: .35; cursor: default; }
+.comandi .conta { margin-left: auto; color: var(--testo-2); font-size: 13px; }
+
+footer { border-top: 1px solid var(--linea); padding: 6px 12px 8px; background: var(--fondo); }
+#linea { width: 100%; height: 86px; display: block; }
+#linea .asse { stroke: var(--linea); stroke-width: 6; stroke-linecap: round; }
+#linea .fatto { stroke: var(--verde); stroke-width: 6; stroke-linecap: round; transition: x2 .6s; }
+#linea .arco { stroke: var(--verde-chiaro); stroke-width: 6; stroke-linecap: butt; }
+#linea .tacca { fill: #FFFFFF; stroke: var(--verde); stroke-width: 2; cursor: pointer; }
+#linea .tacca.contr { stroke: var(--arancio); fill: #FFFFFF; }
+#linea .tacca.visto { fill: var(--verde); }
+#linea .tacca.visto.contr { fill: var(--arancio); }
+#linea .tacca.ora { stroke-width: 3; }
+#linea .anno { font-size: 11px; fill: var(--testo-2); text-anchor: middle; font-family: var(--corpo); }
+#linea .anno-ora { font-size: 13px; fill: var(--testo); text-anchor: middle; font-family: var(--titoli); font-weight: 700; }
+#linea .cap-lab { font-size: 11px; fill: var(--verde); font-family: var(--corpo); letter-spacing: .06em; text-transform: uppercase; }
+
+@media (max-width: 820px) {
+  body { display: flex; flex-direction: column; }
+  header { padding: 12px 16px 8px; order: 0; }
+  header h1 { font-size: 19px; }
+  header .sotto { display: none; }
+  main { display: contents; }
+  #mappa-box { order: 1; }
+  footer { order: 2; }
+  #scheda { order: 3; }
+  #mappa-box { height: 44vh; min-height: 260px; border-right: none; border-bottom: 1px solid var(--linea); }
+  footer { position: sticky; top: 0; z-index: 3; padding: 4px 8px 4px; }
+  #linea { height: 72px; }
+  #scheda { padding: 16px 16px 24px; overflow: visible; }
+  .legenda { padding: 4px 7px; line-height: 1.35; }
+  .data { font-size: 25px; }
+  #scheda h2 { font-size: 21px; }
+  .legenda { font-size: 11px; top: 8px; left: 8px; }
+  .comandi { position: sticky; bottom: 0; background: var(--fondo); padding: 10px 0 12px; }
+}
+</style>
+<link rel="stylesheet" href="storia-sito.css">
+</head>
+<body>
+<header>
+  <h1>Il viaggio dell'enneagramma</h1>
+  <span class="bozza">bozza da verificare</span>
+  <span class="sotto">Da Gurdjieff all'Enneagramma delle Personalità, con le fonti di ogni tappa</span>
+</header>
+
+<main>
+  <div id="mappa-box">
+    <svg id="mappa" role="img" aria-label="Mappa del percorso"></svg>
+    <div class="legenda" aria-hidden="true">
+      <div><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#76B39D" stroke-width="2.4"/></svg>vita di Gurdjieff</div>
+      <div><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#76B39D" stroke-width="2.4" stroke-dasharray="6 5"/></svg>la figura dopo di lui</div>
+      <div><svg width="26" height="10"><circle cx="13" cy="5" r="4.5" fill="#F0B917"/></svg>tappa controversa</div>
+    </div>
+    <div id="mappa-msg"></div>
+  </div>
+  <section id="scheda" aria-live="polite"></section>
+</main>
+
+<footer>
+  <svg id="linea" role="img" aria-label="Linea del tempo"></svg>
+</footer>
+
+<script src="d3.min.js"></script>
+<script src="topojson-client.min.js"></script>
+<script src="tappe.js"></script>
+<script>
+(function () {
+  "use strict";
+  var DATI = window.TAPPE;
+  var T = DATI.tappe;
+  var ABBR = DATI.abbreviazioni_fonti;
+  var NOMI_CAP = { 1: "Capitolo 1 · Il viaggio di Gurdjieff", 2: "Capitolo 2 · Dalla figura ai tipi" };
+  var i = -1; // -1 = copertina
+
+  // ---------- utilita ----------
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function linkifica(s) {
+    return esc(s).replace(/(https?:\/\/[^\s)]+)/g, function (u) { return '<a href="' + u + '" target="_blank" rel="noopener">' + u + "</a>"; });
+  }
+  function fonteEstesa(f) {
+    var sp = f.indexOf(" ");
+    var chiave = sp > 0 ? f.slice(0, sp) : f;
+    var resto = sp > 0 ? f.slice(sp + 1) : "";
+    if (ABBR[chiave]) return linkifica(ABBR[chiave] + (resto ? ", " + resto : ""));
+    return linkifica(f);
+  }
+  function conCoord(k) { return T[k] && T[k].coordinate; }
+  function ultimoConCoord(k) { for (var j = k; j >= 0; j--) if (conCoord(j)) return j; return -1; }
+
+  // ---------- mappa ----------
+  var svg = d3.select("#mappa");
+  var gz = svg.append("g");
+  var gTerra = gz.append("g"), gTratti = gz.append("g"), gPunti = gz.append("g"), gEtich = gz.append("g");
+  var proj = d3.geoNaturalEarth1();
+  var geo = d3.geoPath(proj);
+  var W = 0, H = 0, kOra = 1, mondo = null;
+  var zoom = d3.zoom().scaleExtent([1, 60]).on("zoom", function (e) {
+    gz.attr("transform", e.transform);
+    kOra = e.transform.k;
+    ridimensionaSegni();
+  });
+  svg.call(zoom);
+
+  function misura() {
+    var r = document.getElementById("mappa-box").getBoundingClientRect();
+    W = Math.max(200, r.width); H = Math.max(200, r.height);
+    svg.attr("viewBox", "0 0 " + W + " " + H);
+    proj.fitExtent([[8, 8], [W - 8, H - 8]], { type: "Sphere" });
+    zoom.extent([[0, 0], [W, H]]).translateExtent([[-W, -H], [2 * W, 2 * H]]);
+  }
+
+  function disegnaTerra() {
+    gTerra.selectAll("*").remove();
+    gTerra.append("path").attr("class", "grata").attr("d", geo(d3.geoGraticule10()));
+    if (mondo) {
+      gTerra.selectAll("path.terra").data(topojson.feature(mondo, mondo.objects.countries).features)
+        .join("path").attr("class", "terra").attr("d", geo);
+    }
+  }
+
+  // coordinate del segmento che arriva alla tappa k (dal luogo precedente, passando dai "passaggi")
+  function segmento(k) {
+    var p = ultimoConCoord(k - 1);
+    if (p < 0 || !conCoord(k)) return null;
+    var pts = [T[p].coordinate];
+    (T[k].passaggi || []).forEach(function (v) { pts.push(v.coordinate); });
+    pts.push(T[k].coordinate);
+    var a = pts[0], b = pts[pts.length - 1];
+    if (pts.length === 2 && a[0] === b[0] && a[1] === b[1]) return null;
+    return pts;
+  }
+  // porzione di un percorso (a tratti di cerchio massimo) fino alla frazione t
+  function parziale(pts, t) {
+    var lung = [], tot = 0;
+    for (var j = 1; j < pts.length; j++) { var d = d3.geoDistance(pts[j - 1], pts[j]); lung.push(d); tot += d; }
+    var obiettivo = tot * t, acc = 0, out = [pts[0]];
+    for (j = 1; j < pts.length; j++) {
+      if (acc + lung[j - 1] >= obiettivo) {
+        var f = lung[j - 1] ? (obiettivo - acc) / lung[j - 1] : 1;
+        out.push(d3.geoInterpolate(pts[j - 1], pts[j])(f));
+        return out;
+      }
+      acc += lung[j - 1]; out.push(pts[j]);
+    }
+    return out;
+  }
+  function lineString(pts) { return { type: "LineString", coordinates: pts }; }
+
+  function disegnaPercorso(anima) {
+    gTratti.selectAll("*").remove();
+    gPunti.selectAll("*").remove();
+    gEtich.selectAll("*").remove();
+    var ultimo = i;
+    for (var k = 1; k <= ultimo; k++) {
+      var s = segmento(k);
+      if (!s) continue;
+      var pth = gTratti.append("path").attr("class", "tratto" + (T[k].capitolo === 2 ? " cap2" : ""));
+      if (anima && k === ultimo) {
+        (function (pth, s) {
+          pth.attr("d", geo(lineString([s[0], s[0]])))
+            .transition().delay(350).duration(1300).ease(d3.easeCubicInOut)
+            .attrTween("d", function () { return function (t) { return geo(lineString(parziale(s, Math.max(t, 0.001)))); }; });
+        })(pth, s);
+      } else {
+        pth.attr("d", geo(lineString(s)));
+      }
+      (T[k].passaggi || []).forEach(function (v) {
+        var xy = proj(v.coordinate);
+        gPunti.append("circle").attr("class", "punto via").attr("data-r", 3).attr("cx", xy[0]).attr("cy", xy[1]);
+        gEtich.append("text").attr("class", "etichetta").attr("data-fs", 11).attr("x", xy[0]).attr("y", xy[1]).text(v.luogo.split(" (")[0]);
+      });
+    }
+    // punti delle tappe gia viste (senza doppioni sullo stesso luogo)
+    var visti = {};
+    for (k = 0; k <= ultimo; k++) {
+      if (!conCoord(k)) continue;
+      var c = T[k].coordinate, chiave = c.join(",");
+      var contr = T[k].certezza === "controverso";
+      visti[chiave] = { c: c, contr: (visti[chiave] && k !== ultimo ? visti[chiave].contr : false) || contr, nome: T[k].luogo, k: k };
+    }
+    Object.keys(visti).forEach(function (ch) {
+      var v = visti[ch], xy = proj(v.c);
+      gPunti.append("circle").attr("class", "punto" + (v.contr ? " contr" : "")).attr("data-r", v.k === ultimo ? 6 : 4)
+        .attr("cx", xy[0]).attr("cy", xy[1]);
+    });
+    if (ultimo < 0) { // copertina: tutti i luoghi, tenui
+      T.forEach(function (t) {
+        if (!t.coordinate) return;
+        var p = proj(t.coordinate);
+        gPunti.append("circle").attr("class", "punto" + (t.certezza === "controverso" ? " contr" : "")).attr("data-r", 3.5)
+          .attr("cx", p[0]).attr("cy", p[1]).style("opacity", .55);
+      });
+    }
+    var j = conCoord(ultimo) ? ultimo : -1; // tappa senza luogo preciso: niente alone
+    if (j >= 0) {
+      var xy = proj(T[j].coordinate), contr = T[j].certezza === "controverso" && j === ultimo;
+      gPunti.append("circle").attr("class", "alone" + (contr ? " contr" : "")).attr("data-r", 12).attr("data-sw", 2)
+        .attr("cx", xy[0]).attr("cy", xy[1]);
+      gEtich.append("text").attr("class", "etichetta").attr("data-fs", 14).attr("data-dx", 10).attr("x", xy[0]).attr("y", xy[1])
+        .text(T[j].etichetta || T[j].luogo.split(" (")[0].split(";")[0]);
+    }
+    ridimensionaSegni();
+  }
+
+  function ridimensionaSegni() {
+    var k = kOra;
+    gPunti.selectAll("circle").each(function () {
+      var el = d3.select(this);
+      el.attr("r", (+el.attr("data-r")) / k).attr("stroke-width", (+(el.attr("data-sw") || 1.5)) / k);
+    });
+    gEtich.selectAll("text").each(function () {
+      var el = d3.select(this), fs = +el.attr("data-fs");
+      el.attr("font-size", fs / k).attr("stroke-width", 3 / k).attr("dx", (+(el.attr("data-dx") || 6)) / k).attr("dy", -6 / k);
+    });
+  }
+
+  // inquadra la tappa: il luogo attuale e i due precedenti
+  function inquadra(dura) {
+    var pts = [];
+    if (i < 0 || !conCoord(i)) {
+      T.forEach(function (t, k) { if (t.coordinate && (i < 0 || k <= i)) pts.push(t.coordinate); });
+    } else {
+      var j = ultimoConCoord(i), n = 0;
+      for (var k = j; k >= 0 && n < 3; k--) {
+        if (!conCoord(k)) continue;
+        pts.push(T[k].coordinate); n++;
+        (T[k].passaggi || []).forEach(function (v) { pts.push(v.coordinate); });
+      }
+    }
+    if (!pts.length) return;
+    var xs = pts.map(function (p) { return proj(p)[0]; }), ys = pts.map(function (p) { return proj(p)[1]; });
+    var x0 = d3.min(xs), x1 = d3.max(xs), y0 = d3.min(ys), y1 = d3.max(ys);
+    var minimo = Math.min(W, H) / 9;
+    var bw = Math.max(x1 - x0, minimo), bh = Math.max(y1 - y0, minimo);
+    var k = Math.max(1, Math.min(40, 0.62 * Math.min(W / bw, H / bh)));
+    var cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+    var tr = d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-cx, -cy);
+    if (dura) svg.transition().duration(dura).ease(d3.easeCubicInOut).call(zoom.transform, tr);
+    else svg.call(zoom.transform, tr);
+  }
+
+  // ---------- linea del tempo ----------
+  var lsvg = d3.select("#linea");
+  var LW = 0, LH = 0, x = null;
+  function disegnaLinea() {
+    var r = document.getElementById("linea").getBoundingClientRect();
+    LW = Math.max(280, r.width); LH = r.height;
+    lsvg.attr("viewBox", "0 0 " + LW + " " + LH);
+    lsvg.selectAll("*").remove();
+    var m = 18;
+    // scala a tratti: gli anni fitti (1912-1924) prendono piu spazio
+    x = d3.scaleLinear().domain([1864, 1911, 1925, 1950, 1968, 1990]).range([m, m + (LW - 2 * m) * 0.13, m + (LW - 2 * m) * 0.55, m + (LW - 2 * m) * 0.70, m + (LW - 2 * m) * 0.78, LW - m]).clamp(true);
+    var y = LH * 0.52;
+    lsvg.append("line").attr("class", "asse").attr("x1", x(1864)).attr("x2", x(1990)).attr("y1", y).attr("y2", y);
+    lsvg.append("line").attr("class", "fatto").attr("x1", x(1864)).attr("x2", x(1864)).attr("y1", y).attr("y2", y);
+    var anni = LW < 520 ? [1870, 1915, 1924, 1949, 1990] : [1870, 1890, 1912, 1916, 1920, 1924, 1932, 1949, 1970, 1990];
+    anni.forEach(function (a) { lsvg.append("text").attr("class", "anno").attr("x", x(a)).attr("y", LH - 6).text(a); });
+    lsvg.append("text").attr("class", "cap-lab").attr("x", x(1864)).attr("y", 13).text(LW < 520 ? "Gurdjieff" : "Il viaggio di Gurdjieff");
+    lsvg.append("text").attr("class", "cap-lab").attr("x", x(1949)).attr("y", 13).text(LW < 520 ? "Dopo" : "Dalla figura ai tipi");
+    lsvg.append("line").attr("x1", x(1949) - 4).attr("x2", x(1949) - 4).attr("y1", 18).attr("y2", y - 8).attr("stroke", "rgba(249,248,235,.25)");
+    lsvg.append("text").attr("class", "anno-ora").attr("y", y - 12);
+    var tacche = lsvg.append("g");
+    T.forEach(function (t, k) {
+      tacche.append("circle").attr("class", "tacca" + (t.certezza === "controverso" ? " contr" : ""))
+        .attr("cx", x(t.anno)).attr("cy", y).attr("r", LW < 520 ? 4.5 : 5.5)
+        .attr("data-k", k).style("cursor", "pointer")
+        .on("click", function () { vai(k); })
+        .append("title").text(t.data + " · " + t.titolo);
+    });
+    aggiornaLinea(false);
+  }
+  function aggiornaLinea() {
+    var y = LH * 0.52;
+    var a = i < 0 ? 1864 : T[i].anno;
+    lsvg.select(".fatto").attr("x2", x(a));
+    lsvg.selectAll(".tacca").each(function () {
+      var k = +this.getAttribute("data-k");
+      d3.select(this).classed("visto", k <= i).classed("ora", k === i).attr("r", (k === i ? 8 : (LW < 520 ? 4.5 : 5.5)));
+    });
+    lsvg.select(".anno-ora").attr("x", Math.min(LW - 30, Math.max(30, x(a)))).text(i < 0 ? "" : (T[i].anno_fine && T[i].anno_fine !== T[i].anno ? T[i].anno + "–" + T[i].anno_fine : T[i].anno));
+    // porta in primo piano la tacca attuale
+    lsvg.selectAll(".tacca").filter(function () { return +this.getAttribute("data-k") === i; }).raise();
+  }
+
+  // ---------- scheda ----------
+  function scheda() {
+    var el = document.getElementById("scheda");
+    var h = "";
+    if (i < 0) {
+      h += '<div class="capitolo">Introduzione</div>';
+      h += '<h2>Dalla figura di Gurdjieff all\'Enneagramma delle Personalità</h2>';
+      h += '<div class="intro"><p>' + T.length + ' tappe, dalla nascita di Gurdjieff ai primi libri sui nove tipi. La mappa segue il percorso, la linea in basso mostra dove siamo nel tempo.</p>';
+      h += '<p>Ogni tappa dice quanto è sicura: <span class="certezza certo">certo</span> <span class="certezza probabile">probabile</span> <span class="certezza controverso">! controverso</span>. Sotto ogni scheda ci sono le fonti con pagina o indirizzo.</p>';
+      h += '</div>';
+    } else {
+      var t = T[i];
+      h += '<div class="capitolo">' + esc(NOMI_CAP[t.capitolo]) + '</div>';
+      h += '<div class="data">' + esc(t.data) + '</div>';
+      h += '<div class="luogo">' + esc(t.luogo) + '</div>';
+      h += '<h2>' + esc(t.titolo) + '</h2>';
+      h += '<span class="certezza ' + t.certezza + '">' + (t.certezza === "controverso" ? "! " : "") + esc(t.certezza) + '</span>';
+      h += '<p class="testo">' + esc(t.testo) + '</p>';
+      if (t.citazione) h += '<blockquote class="citazione">«' + esc(t.citazione.testo) + '»<small>' + fonteEstesa(t.citazione.fonte) + '</small></blockquote>';
+      h += '<div class="segnaposto">Immagine da scegliere<br>candidati in IMMAGINI.md, tappa ' + esc(t.id) + '</div>';
+      h += '<details><summary>Fonti e note</summary><ul>';
+      t.fonti.forEach(function (f) { h += '<li>' + fonteEstesa(f) + '</li>'; });
+      h += '</ul>' + (t.note ? '<p class="nota">' + linkifica(t.note) + '</p>' : '') + '</details>';
+    }
+    h += '<div class="comandi"><button class="indietro" ' + (i < 0 ? "disabled" : "") + '>&larr; Indietro</button>';
+    h += '<button class="avanti" ' + (i >= T.length - 1 ? "disabled" : "") + '>' + (i < 0 ? "Comincia" : "Avanti") + ' &rarr;</button>';
+    h += '<span class="conta">' + (i < 0 ? "" : (i + 1) + " / " + T.length) + '</span></div>';
+    el.innerHTML = h;
+    el.scrollTop = 0;
+    el.querySelector(".indietro").onclick = function () { vai(i - 1); };
+    el.querySelector(".avanti").onclick = function () { vai(i + 1); };
+  }
+
+  function vai(k) {
+    k = Math.max(-1, Math.min(T.length - 1, k));
+    var avanti = k === i + 1;
+    i = k;
+    scheda();
+    disegnaPercorso(avanti);
+    inquadra(1400);
+    aggiornaLinea();
+    try { history.replaceState(null, "", i < 0 ? location.pathname : "#" + T[i].id); } catch (e) {}
+  }
+
+  window.addEventListener("hashchange", function () {
+    T.forEach(function (t, k) { if ("#" + t.id === location.hash && k !== i) vai(k); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") vai(i + 1);
+    else if (e.key === "ArrowLeft") vai(i - 1);
+  });
+  // scorrimento col dito sulla scheda
+  var x0 = null;
+  document.getElementById("scheda").addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  document.getElementById("scheda").addEventListener("touchend", function (e) {
+    if (x0 == null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 60) vai(i + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  var attesa;
+  window.addEventListener("resize", function () {
+    clearTimeout(attesa);
+    attesa = setTimeout(function () { misura(); disegnaTerra(); disegnaPercorso(false); inquadra(0); disegnaLinea(); }, 150);
+  });
+
+  // ---------- avvio ----------
+  misura();
+  disegnaTerra();
+  disegnaLinea();
+  var inizio = -1;
+  if (location.hash) T.forEach(function (t, k) { if ("#" + t.id === location.hash) inizio = k; });
+  i = inizio; scheda(); disegnaPercorso(false); inquadra(0); aggiornaLinea();
+
+  d3.json("countries-50m.json").then(function (w) {
+    mondo = w; disegnaTerra();
+  }).catch(function () {
+    var m = document.getElementById("mappa-msg");
+    m.style.display = "block";
+    m.textContent = "Confini non caricati (serve la connessione a internet). Il percorso e le schede funzionano lo stesso.";
+  });
+})();
+</script>
+
+<script>
+/* sito di prova (beta): i link fra le pagine portano ai file della prova; quello che la prova non ha va al sito vero */
+(function () {
+  var MAPPA = {"/": "index.html", "/laccademia/": "laccademia.html", "/chi-siamo/": "chi-siamo.html", "/l-enneagramma/": "l-enneagramma.html", "/la-storia/": "la-storia.html", "/i-9-tipi/": "i-9-tipi.html", "/corsi-accademia/": "corsi-accademia.html", "/corsi/": "corsi.html", "/residenziale-enneagramma/": "residenziale-enneagramma.html", "/contatti/": "contatti.html", "/podcast/": "podcast.html", "/radio-accademia/": "radio-accademia.html", "/corsi-in-partenza/": "corsi-in-partenza.html", "/termini-e-condizioni/": "termini-e-condizioni.html", "/privacy-policy/": "privacy-policy.html", "/corsi-in-partenza/individuazione-esatta-del-tipo/": "corsi-in-partenza-individuazione-esatta-del-tipo.html", "/2025/12/28/quando-confondiamo-un-tipo-con-un-altro/": "2025-12-28-quando-confondiamo-un-tipo-con-un-altro.html", "/2025/12/18/il-lavoro-della-presenza-nell-enneagramma/": "2025-12-18-il-lavoro-della-presenza-nell-enneagramma.html", "/2025/11/29/le-leggi-universali-dellenneagramma/": "2025-11-29-le-leggi-universali-dellenneagramma.html", "/2025/10/30/chi-e-davvero-un-maestro/": "2025-10-30-chi-e-davvero-un-maestro.html", "/2025/10/09/test-con-enneagramma-si-o-no/": "2025-10-09-test-con-enneagramma-si-o-no.html", "/2025/09/25/crescere-con-l-enneagramma/": "2025-09-25-crescere-con-l-enneagramma.html", "/2025/09/14/come-riconoscere-il-proprio-tipo/": "2025-09-14-come-riconoscere-il-proprio-tipo.html", "/2025/08/08/s1e5-come-combinare-guai-con-enneagramma/": "2025-08-08-s1e5-come-combinare-guai-con-enneagramma.html", "/2025/07/24/s1e4-come-i-9-tipi-spendono-energia/": "2025-07-24-s1e4-come-i-9-tipi-spendono-energia.html", "/2025/07/10/osservazione-di-se/": "2025-07-10-osservazione-di-se.html", "/2025/06/26/s1e2-i-3-centri-di-intelligenza/": "2025-06-26-s1e2-i-3-centri-di-intelligenza.html", "/2025/06/12/s1e1-dentro-la-mappa/": "2025-06-12-s1e1-dentro-la-mappa.html"}, VERO = "https://www.accademiaenneagramma.it";
+  // dentro i riquadri (saggio, mappa, radio) la radice della prova è sopra la cartella assets/
+  var i = location.href.indexOf("/assets/"), dentro = i > 0;
+  function base() { return dentro ? location.href.slice(0, i + 1) : location.href; }
+  function dove(href) {
+    var u; try { u = new URL(href, location.href); } catch (e) { return null; }
+    if (u.protocol === "mailto:" || u.protocol === "tel:") return null;
+    var mio = u.origin === location.origin, p = u.pathname;
+    if (u.origin === VERO || (mio && /^\/[^.]*\/?$/.test(p) && !/\.html$/.test(p))) {
+      if (!/\/$/.test(p)) p += "/";
+      var f = MAPPA[p];
+      if (f) return { url: new URL(f + u.hash, base()).href, top: true };
+      return { url: VERO + p + u.hash, fuori: true };
+    }
+    return null;
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a || e.defaultPrevented) return;
+    var d = dove(a.getAttribute("href"));
+    if (!d) return;
+    e.preventDefault();
+    if (d.fuori) window.open(d.url, "_blank", "noopener");
+    else (dentro ? window.parent : window).location.href = d.url;
+  }, true);
+  document.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = e.target, n = document.createElement("p");
+    n.textContent = "Questa è la versione di prova del sito: il modulo non invia messaggi. Scrivici a info@accademiaenneagramma.it.";
+    n.style.cssText = "margin:12px 0 0;padding:10px 12px;border:1px solid rgba(240,185,23,.6);font-size:14px";
+    f.appendChild(n);
+  }, true);
+})();
+</script>
+</body>
+</html>

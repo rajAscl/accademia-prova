@@ -1,0 +1,55 @@
+/* ===== La storia: la mappa con la cronologia nel sito nuovo (sito/nuova-home/sorgente/storia-sito.css, 12/10/2026) =====
+   La pagina è il prototipo ClaudePipeline/progetti-github/timeline-quarta-via («Il viaggio dell'enneagramma»), copiato
+   da costruisci.py con le librerie e i confini degli stati sul sito. Qui prende i colori dell'Accademia e la pietra
+   (la dà la pagina intorno): il percorso in salvia, le tappe controverse in oro, i caratteri del sito. */
+@font-face { font-family: "Lora"; font-weight: 400; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lora"; font-weight: 500 700; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lora"; font-style: italic; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Lufga"; font-weight: 100 450; font-display: swap; src: url("../caratteri/inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lufga"; font-weight: 451 900; font-display: swap; src: url("../caratteri/inter-latin-500-normal.woff2") format("woff2"); }
+
+:root {
+  color-scheme: dark;
+  --verde: #76B39D;
+  --verde-chiaro: rgba(118,179,157,.35);
+  --testo: #F9F8EB;
+  --testo-2: rgba(249,248,235,.68);
+  --fondo: transparent;
+  --carta: rgba(10,40,48,.72);
+  --linea: rgba(249,248,235,.16);
+  --terra: rgba(249,248,235,.10);
+  --mare: transparent;
+  --arancio: #F0B917;
+}
+html, body { background: transparent !important; }
+body { min-height: 0; height: 100%; font-size: 15.5px; }
+header { display: none !important; }
+
+#mappa .terra { stroke: rgba(249,248,235,.22) !important; }
+#mappa .grata { stroke: rgba(249,248,235,.06) !important; }
+#mappa .punto { stroke: #0f4552 !important; }
+#mappa .punto.via { fill: #0f4552 !important; }
+#mappa .etichetta { stroke: rgba(10,40,48,.85) !important; }
+.legenda { background: rgba(10,40,48,.78) !important; border-color: var(--linea) !important; }
+#mappa-box { border-color: var(--linea) !important; }
+#linea .tacca, #linea .tacca.contr { fill: #0f4552 !important; }
+#linea .tacca.visto { fill: var(--verde) !important; }
+#linea .tacca.visto.contr { fill: var(--arancio) !important; }
+.certezza.controverso { color: #0E3A46 !important; }
+.data, #scheda h2 { font-weight: 500 !important; }
+.data { font-size: 34px; }
+#scheda h2 { font-size: 28px; }
+.citazione { font-size: 19px; }
+#scheda button, .comandi button {
+  font: 500 14px "Lufga", sans-serif; color: #F9F8EB; background: none; border: 1px solid rgba(240,185,23,.55);
+  border-radius: 2px; padding: 8px 14px; cursor: pointer;
+}
+#scheda button:hover:not([disabled]) { background: rgba(240,185,23,.14); }
+#scheda button[disabled] { opacity: .35; cursor: default; }
+details summary { cursor: pointer; color: var(--testo-2); }
+a { color: #F0B917; }
+.segnaposto { display: none !important; }
+@media (max-width: 820px) {
+  .comandi { background: rgba(10,40,48,.92) !important; }
+  footer { background: rgba(10,40,48,.92); }
+}

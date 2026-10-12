@@ -1,0 +1,35 @@
+/* ===== Radio Accademia nel sito nuovo (sito/nuova-home/sorgente/radio-sito.css, 12/10/2026) =====
+   La radio è il prototipo di ClaudePipeline/progetti-github/accademia-radio, copiato da costruisci.py.
+   Qui prende i caratteri e la pietra del sito nuovo: i nomi «Montserrat» e «Lora» della radio puntano
+   a Inter e a Cormorant Garamond, ospitati sul sito; la testata con il nome la dà la pagina intorno. */
+@font-face { font-family: "Montserrat"; font-weight: 100 450; font-display: swap; src: url("../caratteri/inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 451 900; font-display: swap; src: url("../caratteri/inter-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lora"; font-weight: 400; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lora"; font-weight: 700; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lora"; font-style: italic; font-weight: 400; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
+
+/* stesso schema di colori della pagina intorno: se no il browser dipinge di bianco il fondo del riquadro */
+:root { color-scheme: dark; }
+html, body { background: transparent !important; }
+body::before { display: none !important; }
+body { font-size: 19px; }
+.radio { min-height: 0 !important; padding-top: 6px !important; }
+.testata .nome { visibility: hidden; }
+
+/* i titoli come quelli del sito: Cormorant, sottile */
+.tema { font-family: "Lora", serif !important; font-weight: 400 !important; font-size: clamp(36px, 5.6vw, 62px) !important; letter-spacing: 0 !important; }
+.sotto { font-size: 22px; line-height: 1.35; }
+.freq { font-weight: 400 !important; }
+.sistema, .salto, .legenda, .staz button, .spia, .sottoriga, .tacca.m::after { font-weight: 500 !important; }
+
+/* l'accensione: la pietra del sito, niente logo, il pulsante col filo d'oro */
+.soglia { background: #155263 url("../img/pietra.webp") center / cover no-repeat !important; border-radius: 4px; }
+.soglia img { display: none; }
+.soglia h1 { font-family: "Lora", serif !important; font-weight: 400 !important; font-size: clamp(40px, 7vw, 72px) !important; letter-spacing: 0 !important; }
+.soglia p { font-family: "Montserrat", sans-serif; font-size: 16px; line-height: 1.6; opacity: .88; }
+.soglia button {
+  background: none !important; color: #F9F8EB !important; border: 1px solid rgba(240,185,23,.6) !important; border-radius: 2px !important;
+  font-weight: 500 !important; letter-spacing: .2em !important;
+}
+.soglia button:hover { background: rgba(240,185,23,.14) !important; }
+.scala { background: rgba(10,40,48,.45) !important; }

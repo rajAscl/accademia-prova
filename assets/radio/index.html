@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radio Accademia</title>
+<style>
+:root {
+  --petrolio: #155263; --notte: #0E3A46; --oro: #F0B917; --crema: #F9F8EB; --acqua: #76B39D;
+  --px: 92px;               /* larghezza di 1 MHz sulla scala */
+  --filo: rgba(249,248,235,.22);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--notte); color: var(--crema);
+  font-family: "Lora", Georgia, serif; font-size: 17px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1;
+  background: linear-gradient(rgba(14,58,70,.80), rgba(14,58,70,.93)), url("img/trama-scuro.jpg") center / 900px auto;
+}
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--oro); outline-offset: 4px; border-radius: 4px; }
+
+.radio { max-width: 1040px; min-height: 100%; margin: 0 auto; padding: 22px 28px 26px; display: flex; flex-direction: column; }
+
+/* ---------- testata ---------- */
+.testata { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.nome { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .34em; text-transform: uppercase; }
+.nome small { display: block; font-weight: 500; font-size: 10.5px; letter-spacing: .3em; color: var(--acqua); margin-top: 3px; }
+.spia { display: flex; align-items: center; gap: 10px; font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; padding: 8px 4px; }
+.spia i { width: 9px; height: 9px; border-radius: 50%; background: rgba(249,248,235,.25); transition: background .3s, box-shadow .3s; }
+.accesa .spia i { background: var(--oro); box-shadow: 0 0 0 4px rgba(240,185,23,.18); }
+
+/* ---------- schermo ---------- */
+.schermo { flex: 1; display: grid; grid-template-columns: 250px 1fr; gap: 44px; align-items: center; padding: 26px 0 18px; min-height: 330px; }
+.occhio { width: 250px; height: 250px; }
+.occhio .base { stroke: rgba(249,248,235,.13); }
+.occhio .num { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 11px; fill: rgba(249,248,235,.45); text-anchor: middle; dominant-baseline: central; }
+.occhio .cerchio { stroke: var(--oro); }
+.occhio .dentro { stroke: var(--acqua); }
+
+.freq { font-family: "Montserrat", sans-serif; font-weight: 300; font-size: 21px; letter-spacing: .08em; font-variant-numeric: tabular-nums; color: var(--oro); display: flex; align-items: baseline; gap: 8px; }
+.freq b { font-weight: 800; font-size: 34px; letter-spacing: 0; }
+.freq span { font-size: 11px; font-weight: 600; letter-spacing: .3em; color: rgba(249,248,235,.55); }
+.tema { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 52px); line-height: 1.06; margin: 6px 0 12px; letter-spacing: -.01em; min-height: 1.06em; transition: opacity .25s; }
+.sistema { display: inline-flex; align-items: center; gap: 9px; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; transition: opacity .25s; }
+.sistema i { width: 10px; height: 10px; border-radius: 50%; background: var(--oro); }
+.sistema.ep i { background: var(--acqua); }
+.sistema.ep { color: var(--acqua); } .sistema.qv { color: var(--oro); }
+.sotto { margin: 20px 0 14px; min-height: 3.1em; font-size: 21px; line-height: 1.45; max-width: 31em; display: flex; align-items: center; }
+.sotto p { margin: 0; }
+.onda { display: block; width: 100%; max-width: 560px; height: 44px; transition: opacity .3s; }
+.sottoriga { display: flex; align-items: center; gap: 22px; margin-top: 12px; min-height: 30px; font-family: "Montserrat", sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.sottoriga a { text-decoration: none; border-bottom: 1.5px solid var(--oro); padding-bottom: 3px; }
+.sottoriga a:hover { color: var(--oro); }
+.sottoriga button { color: var(--acqua); border-bottom: 1.5px solid transparent; padding: 0 0 3px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+.sottoriga button:hover { border-color: var(--acqua); }
+.vuoto .tema { color: rgba(249,248,235,.28); }
+.vuoto .sistema, .vuoto .sottoriga, .vuoto .onda { opacity: 0; pointer-events: none; }
+.vuoto .sotto { color: rgba(249,248,235,.6); font-style: italic; font-size: 18px; }
+[hidden] { display: none !important; }
+
+/* ---------- scala ---------- */
+.scala { position: relative; height: 138px; margin: 0 -28px; overflow: hidden; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none;
+  border-top: 1px solid var(--filo); border-bottom: 1px solid var(--filo); background: rgba(14,58,70,.55);
+  -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.scala.presa { cursor: grabbing; }
+.nastro { position: absolute; left: 50%; top: 0; height: 100%; will-change: transform; z-index: 1; }
+.tacca { font-style: normal; position: absolute; top: 50%; width: 1px; height: 12px; margin-top: -6px; background: rgba(249,248,235,.3); }
+.tacca.m { height: 24px; margin-top: -12px; background: rgba(249,248,235,.5); }
+.tacca.m::after { content: attr(data-n); position: absolute; left: 5px; top: 5px; font-family: "Montserrat", sans-serif; font-size: 9.5px; font-weight: 500; letter-spacing: .08em; color: rgba(249,248,235,.4); }
+.staz { position: absolute; top: 0; height: 100%; width: 0; }
+.staz::before { content: ""; position: absolute; left: -1.5px; top: 50%; width: 3px; height: 34px; margin-top: -17px; border-radius: 2px; background: var(--oro); }
+.staz.ep::before { background: var(--acqua); }
+.staz button { position: absolute; left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(var(--px) * 2.7); padding: 5px 9px; text-align: center; background: rgba(14,58,70,.92); border-radius: 3px; z-index: 2;
+  font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 12px; line-height: 1.2; letter-spacing: .1em; text-transform: uppercase; color: rgba(249,248,235,.72); transition: color .2s; }
+.staz.su button { bottom: calc(50% + 20px); } .staz.giu button { top: calc(50% + 20px); }
+.staz.qui button { color: var(--oro); } .staz.ep.qui button { color: var(--acqua); }
+.ago { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--crema); pointer-events: none; }
+.ago::before, .ago::after { content: ""; position: absolute; left: -5px; border: 6px solid transparent; }
+.ago::before { top: 0; border-top-color: var(--crema); } .ago::after { bottom: 0; border-bottom-color: var(--crema); }
+
+/* ---------- comandi ---------- */
+.comandi { display: flex; align-items: center; justify-content: center; gap: 46px; padding: 24px 0 6px; }
+.salto { font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(249,248,235,.75); display: flex; align-items: center; gap: 12px; padding: 12px 6px; width: 150px; }
+.salto:hover { color: var(--oro); }
+.salto.prima { justify-content: flex-end; }
+.salto svg { width: 22px; height: 12px; flex: none; }
+.manopola { position: relative; width: 148px; height: 148px; flex: none; touch-action: none; cursor: grab; border-radius: 50%; }
+.manopola svg { width: 100%; height: 100%; display: block; }
+.manopola .disco { transform-origin: 74px 74px; }
+.aiuto { text-align: center; font-size: 14.5px; font-style: italic; color: rgba(249,248,235,.62); margin: 2px 0 0; }
+.aiuto .dito { display: none; }
+@media (hover: none) { .aiuto .dito { display: inline; } .aiuto .tasti { display: none; } }
+.legenda { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 26px; margin-top: 14px; font-family: "Montserrat", sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(249,248,235,.6); }
+.legenda span { display: inline-flex; align-items: center; gap: 8px; }
+.legenda i { width: 8px; height: 8px; border-radius: 50%; background: var(--oro); } .legenda .ep i { background: var(--acqua); }
+
+/* ---------- accensione ---------- */
+.soglia { position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; padding: 28px; text-align: center;
+  background: linear-gradient(rgba(14,58,70,.90), rgba(14,58,70,.97)), var(--notte) url("img/trama-stelle.jpg") center / cover; transition: opacity .6s, visibility .6s; }
+.accesa .soglia { opacity: 0; visibility: hidden; }
+.soglia div { max-width: 560px; }
+.soglia img { width: 92px; height: auto; opacity: .9; }
+.soglia h1 { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: clamp(36px, 8vw, 64px); line-height: 1; margin: 10px 0 20px; letter-spacing: -.01em; }
+.soglia p { margin: 0 auto 30px; font-size: 19px; max-width: 26em; }
+.soglia button { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 14px; letter-spacing: .3em; text-transform: uppercase; color: var(--notte); background: var(--oro); padding: 18px 44px 17px; border-radius: 40px; }
+.soglia button:hover { background: var(--crema); }
+.soglia small { display: block; margin-top: 18px; font-style: italic; font-size: 14px; color: rgba(249,248,235,.6); }
+
+@media (max-width: 760px) {
+  :root { --px: 78px; }
+  body { font-size: 16px; }
+  .radio { padding: 16px 18px 20px; }
+  .scala { margin: 0 -18px; height: 128px; }
+  .schermo { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 14px 0 14px; min-height: 0; align-items: start; }
+  .occhio { width: 108px; height: 108px; position: absolute; right: 14px; top: 62px; }
+  .occhio .num { display: none; }
+  .info { padding-top: 6px; min-width: 0; }
+  .freq { padding-right: 120px; }
+  .tema { font-size: 31px; padding-right: 112px; min-height: 2.12em; display: flex; align-items: flex-end; }
+  .sotto { font-size: 18.5px; min-height: 4.4em; margin: 14px 0 10px; }
+  .staz button { font-size: 10.5px; letter-spacing: .08em; }
+  .comandi { gap: 8px; padding-top: 18px; }
+  .salto { width: 96px; font-size: 9.5px; letter-spacing: .14em; gap: 8px; }
+  .manopola { width: 132px; height: 132px; }
+  .nome { font-size: 13px; }
+  .spia span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<link rel="stylesheet" href="radio-sito.css">
+</head>
+<body>
+<div class="radio" id="radio">
+
+  <header class="testata">
+    <div class="nome">Radio Accademia<small>Accademia Enneagramma</small></div>
+    <button class="spia" id="spia" aria-pressed="false"><i></i><span>Spenta</span></button>
+  </header>
+
+  <section class="schermo vuoto" id="schermo" aria-live="off">
+    <svg class="occhio" id="occhio" viewBox="0 0 250 250" aria-hidden="true"></svg>
+    <div class="info">
+      <div class="freq"><b id="freq">88.0</b><span>MHz</span></div>
+      <h2 class="tema" id="tema">· · ·</h2>
+      <div class="sistema" id="sistema"><i></i><span></span></div>
+      <div class="sotto" id="sotto" aria-live="polite"><p></p></div>
+      <canvas class="onda" id="onda" width="1120" height="88"></canvas>
+      <div class="sottoriga">
+        <a id="intero" href="#" target="_blank" rel="noopener">L’episodio intero ↗</a>
+        <button id="ancora" hidden>Riascolta</button>
+        <button id="altro" hidden>Un altro spezzone</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="scala" id="scala" aria-label="Scala delle frequenze">
+    <div class="nastro" id="nastro"></div>
+    <div class="ago"></div>
+  </section>
+
+  <section class="comandi">
+    <button class="salto prima" id="prima" aria-label="Stazione precedente">
+      <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 6H2M7 1 2 6l5 5"/></svg><span>Stazione prima</span>
+    </button>
+    <div class="manopola" id="manopola" role="slider" tabindex="0" aria-label="Manopola della sintonia" aria-valuemin="87.5" aria-valuemax="108" aria-valuenow="88">
+      <svg viewBox="0 0 148 148" aria-hidden="true">
+        <g id="tacche" stroke="rgba(249,248,235,.35)" stroke-width="1.2"></g>
+        <g class="disco" id="disco">
+          <circle cx="74" cy="74" r="56" fill="#155263" stroke="#F9F8EB" stroke-opacity=".5" stroke-width="1.2"/>
+          <circle cx="74" cy="74" r="43" fill="none" stroke="#F9F8EB" stroke-opacity=".16" stroke-width="1"/>
+          <circle cx="74" cy="74" r="30" fill="#0E3A46" stroke="#F9F8EB" stroke-opacity=".2" stroke-width="1"/>
+          <line x1="74" y1="20" x2="74" y2="42" stroke="#F0B917" stroke-width="4" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <button class="salto dopo" id="dopo" aria-label="Stazione successiva">
+      <span>Stazione dopo</span><svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 6h19M15 1l5 5-5 5"/></svg>
+    </button>
+  </section>
+  <p class="aiuto" id="aiuto">Gira la manopola<span class="dito"> oppure trascina la scala.</span><span class="tasti">, trascina la scala oppure usa le frecce della tastiera.</span></p>
+  <div class="legenda"><span class="qv"><i></i>Quarta Via</span><span class="ep"><i></i>Enneagramma delle Personalità</span></div>
+
+  <div class="soglia" id="soglia">
+    <div>
+      <h1>Radio Accademia</h1>
+      <p>Ogni frequenza è un tema dell’Enneagramma delle Personalità o della Quarta Via. Fra una stazione e l’altra c’è il fruscio. Quando ti fermi su una stazione senti una voce del podcast.</p>
+      <button id="accendi">Accendi</button>
+      <small>Serve l’audio del dispositivo.</small>
+    </div>
+  </div>
+</div>
+
+<audio id="voce" preload="auto"></audio>
+<script src="stazioni.js"></script>
+<script>
+(function () {
+  "use strict";
+  var ST = window.STAZIONI || [];
+  // ogni stazione ha più spezzoni (s.spezzoni); a ogni sintonia ne parte un altro, senza ripetere l'ultimo sentito
+  ST.forEach(function (s) {
+    if (!s.spezzoni) s.spezzoni = [s];
+    var qv = s.spezzoni.filter(function (x) { return x.sistema === "qv"; }).length;
+    s.sistema = qv * 2 >= s.spezzoni.length ? "qv" : "ep";
+    s.k = Math.floor(Math.random() * s.spezzoni.length);
+  });
+  function cur(i) { var s = ST[i]; return s.spezzoni[s.k]; }
+  function prossimo(i) { var s = ST[i]; if (s.spezzoni.length > 1) s.k = (s.k + 1 + Math.floor(Math.random() * (s.spezzoni.length - 1))) % s.spezzoni.length; }
+  var FMIN = 87.5, FMAX = 108, PRESA = 0.5;      // PRESA: mezza larghezza (MHz) in cui una stazione si sente
+  var $ = function (id) { return document.getElementById(id); };
+  var radio = $("radio"), schermo = $("schermo"), nastro = $("nastro"), scala = $("scala"), manopola = $("manopola"),
+      disco = $("disco"), voce = $("voce"), onda = $("onda"), sotto = $("sotto").firstElementChild;
+  var q = new URLSearchParams(location.search);
+  var prova = q.has("t") ? parseFloat(q.get("t")) : null;      // ?t=12 mostra lo stato al secondo 12 senza audio (per le verifiche)
+  var f = q.has("f") ? parseFloat(q.get("f")) : 88.0;
+  var accesa = false, attiva = -1, mostrata = -2, finita = false, animazione = null, ultimoCue = null;
+
+  function px() { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--px")); }
+
+  /* ---------- la scala ---------- */
+  (function costruisci() {
+    var h = "";
+    for (var i = Math.round(FMIN * 5); i <= FMAX * 5; i++) {          // una tacca ogni 0,2 MHz
+      var v = i / 5, intero = i % 5 === 0;
+      h += '<i class="tacca' + (intero ? " m" : "") + '" style="left:calc(var(--px)*' + (v - FMIN).toFixed(1) + ')"' + (intero ? ' data-n="' + v + '"' : "") + "></i>";
+    }
+    ST.forEach(function (s, i) {
+      h += '<div class="staz ' + s.sistema + (i % 2 ? " giu" : " su") + '" data-i="' + i + '" style="left:calc(var(--px)*' + (s.f - FMIN).toFixed(1) + ')"><button tabindex="-1">' + s.tema + "</button></div>";
+    });
+    nastro.innerHTML = h;
+    var t = "";
+    for (var k = 0; k < 40; k++) { var a = k * 9 * Math.PI / 180; t += '<line x1="' + (74 + 64 * Math.sin(a)).toFixed(1) + '" y1="' + (74 - 64 * Math.cos(a)).toFixed(1) + '" x2="' + (74 + (k % 5 ? 69 : 73) * Math.sin(a)).toFixed(1) + '" y2="' + (74 - (k % 5 ? 69 : 73) * Math.cos(a)).toFixed(1) + '"/>'; }
+    $("tacche").innerHTML = t;
+  })();
+
+  /* ---------- l'enneagramma che segna il segnale: cerchio dal 9, triangolo 9-6-3, esade 1-4-2-8-5-7 ---------- */
+  var tratti = [];
+  (function occhio() {
+    var C = 125, R = 92;
+    function p(n, r) { var a = (n % 9) * 40 * Math.PI / 180; return [(C + (r || R) * Math.sin(a)), (C - (r || R) * Math.cos(a))]; }
+    function linea(nn) { return nn.map(function (n, i) { var c = p(n); return (i ? "L" : "M") + c[0].toFixed(2) + " " + c[1].toFixed(2); }).join(" "); }
+    var cerchio = "M" + C + " " + (C - R) + " A" + R + " " + R + " 0 1 1 " + C + " " + (C + R) + " A" + R + " " + R + " 0 1 1 " + C + " " + (C - R);
+    var tri = linea([9, 6, 3, 9]), esa = linea([1, 4, 2, 8, 5, 7, 1]);
+    var h = '<g fill="none" stroke-width="1.4" class="base"><path d="' + cerchio + '"/><path d="' + tri + '"/><path d="' + esa + '"/></g>';
+    h += '<path class="t cerchio" fill="none" stroke-width="2.6" stroke-linecap="round" d="' + cerchio + '"/>';
+    h += '<path class="t dentro" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="' + tri + '"/>';
+    h += '<path class="t dentro" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="' + esa + '"/>';
+    for (var n = 1; n <= 9; n++) { var c = p(n, R + 17); h += '<text class="num" x="' + c[0].toFixed(1) + '" y="' + c[1].toFixed(1) + '">' + n + "</text>"; }
+    $("occhio").innerHTML = h;
+    [].forEach.call($("occhio").querySelectorAll(".t"), function (el) { var L = el.getTotalLength(); el.style.strokeDasharray = L; tratti.push([el, L]); });
+  })();
+  function disegnaOcchio(s) {            // s da 0 a 1: prima il cerchio, poi il triangolo, poi l'esade
+    var parti = [[0, .5], [.5, .72], [.72, 1]];
+    tratti.forEach(function (t, i) {
+      var k = Math.max(0, Math.min(1, (s - parti[i][0]) / (parti[i][1] - parti[i][0])));
+      t[0].style.strokeDashoffset = (t[1] * (1 - k)).toFixed(1);
+      t[0].style.opacity = k > 0.001 ? 1 : 0;
+    });
+  }
+
+  /* ---------- il suono ---------- */
+  var ctx = null, gFruscio = null, gFischio = null, osc = null;
+  function avviaSuono() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    try {
+      ctx = new AC();
+      var n = ctx.sampleRate * 3, buf = ctx.createBuffer(1, n, ctx.sampleRate), d = buf.getChannelData(0), b = 0;
+      for (var i = 0; i < n; i++) {                       // rumore generato qui: bianco con una parte più scura, più qualche scricchiolio
+        var w = Math.random() * 2 - 1; b = 0.97 * b + 0.03 * w;
+        d[i] = w * 0.5 + b * 4 + (Math.random() < 0.0004 ? (Math.random() * 2 - 1) * 2 : 0);
+      }
+      for (var j = 0; j < 2000; j++) { var m = j / 2000; d[j] = d[j] * m + d[n - 2000 + j] * (1 - m); }   // giunta morbida del ciclo
+      var src = ctx.createBufferSource(); src.buffer = buf; src.loop = true; src.loopEnd = (n - 2000) / ctx.sampleRate;
+      var bp = ctx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 1700; bp.Q.value = 0.35;
+      var hp = ctx.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 220;
+      gFruscio = ctx.createGain(); gFruscio.gain.value = 0;
+      var lfo = ctx.createOscillator(), gl = ctx.createGain(); lfo.frequency.value = 0.31; gl.gain.value = 500; lfo.connect(gl); gl.connect(bp.frequency); lfo.start();
+      src.connect(bp); bp.connect(hp); hp.connect(gFruscio); gFruscio.connect(ctx.destination); src.start();
+      osc = ctx.createOscillator(); osc.type = "sine"; osc.frequency.value = 900;
+      gFischio = ctx.createGain(); gFischio.gain.value = 0; osc.connect(gFischio); gFischio.connect(ctx.destination); osc.start();
+    } catch (e) { ctx = null; }
+  }
+  function volumi(s, dist) {
+    var fr = accesa ? 0.2 * Math.pow(1 - s, 1.4) : 0;
+    var fi = accesa ? 0.022 * Math.sin(Math.PI * Math.min(1, s * 1.4)) * (s < 0.72 ? 1 : 0) : 0;   // il fischio di sintonia, solo sul bordo della stazione
+    if (ctx && gFruscio) {
+      var t = ctx.currentTime;
+      gFruscio.gain.setTargetAtTime(fr, t, 0.04);
+      gFischio.gain.setTargetAtTime(fi, t, 0.03);
+      osc.frequency.setTargetAtTime(300 + 2600 * Math.min(1, Math.abs(dist) / PRESA), t, 0.03);
+    }
+    try { voce.volume = accesa ? Math.pow(s, 1.6) : 0; } catch (e) {}
+  }
+
+  /* ---------- la sintonia ---------- */
+  function vicina(v) { var bi = 0, bd = 1e9; ST.forEach(function (s, i) { var d = Math.abs(s.f - v); if (d < bd) { bd = d; bi = i; } }); return bi; }
+  function segnale(v, i) { var d = Math.abs(ST[i].f - v) / PRESA; if (d >= 1) return 0; var x = 1 - d; return x * x * (3 - 2 * x); }
+
+  function suona(i, stesso) {
+    if (!stesso && attiva !== i) prossimo(i);
+    attiva = i; finita = false; ultimoCue = null; $("ancora").hidden = true; $("altro").hidden = ST[i].spezzoni.length < 2;
+    mostra(i);
+    if (prova !== null) return;
+    voce.src = cur(i).clip; voce.currentTime = 0;
+    if (accesa) { var p = voce.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+  function zitta() { attiva = -1; if (prova === null) voce.pause(); }
+
+  function aggiorna() {
+    f = Math.max(FMIN, Math.min(FMAX, f));
+    var i = vicina(f), s = ST.length ? segnale(f, i) : 0;
+    nastro.style.transform = "translateX(" + (-(f - FMIN) * px()).toFixed(1) + "px)";
+    disco.style.transform = "rotate(" + ((f - FMIN) * 90).toFixed(1) + "deg)";
+    $("freq").textContent = f.toFixed(1);
+    manopola.setAttribute("aria-valuenow", f.toFixed(1));
+    manopola.setAttribute("aria-valuetext", f.toFixed(1) + " megahertz" + (s > 0.5 ? ", " + ST[i].tema : ", fruscio"));
+    disegnaOcchio(accesa || prova !== null ? s : 0);
+
+    if (s > 0.12 && attiva !== i) suona(i);
+    if (s === 0 && attiva !== -1) zitta();
+    volumi(s, ST.length ? f - ST[i].f : 1);
+
+    var vista = s > 0.5 ? i : -1;
+    if (vista !== mostrata) {
+      mostrata = vista;
+      [].forEach.call(nastro.querySelectorAll(".staz"), function (el) { el.classList.toggle("qui", +el.dataset.i === vista); });
+      if (vista < 0) {
+        schermo.classList.add("vuoto"); $("tema").textContent = "· · ·"; sotto.textContent = accesa || prova !== null ? "Qui c’è solo il fruscio: gira ancora." : "";
+      } else {
+        schermo.classList.remove("vuoto"); $("tema").textContent = ST[vista].tema;
+        mostra(vista);
+      }
+    }
+  }
+
+  // il sistema e il rimando alla puntata sono quelli dello spezzone che suona
+  function mostra(i) {
+    if (i !== mostrata) return;
+    var sp = cur(i);
+    $("sistema").className = "sistema " + sp.sistema;
+    $("sistema").lastElementChild.textContent = sp.sistema === "qv" ? "Quarta Via" : "Enneagramma delle Personalità";
+    $("intero").href = "https://www.youtube.com/watch?v=" + sp.yt + "&t=" + Math.floor(sp.da) + "s";
+    sotto.textContent = ""; ultimoCue = null;
+  }
+
+  /* i sottotitoli e l'onda scorrono solo durante l'ascolto */
+  function battito() {
+    requestAnimationFrame(battito);
+    if (mostrata < 0) return;
+    var st = cur(mostrata), t = prova !== null ? prova : (attiva === mostrata ? voce.currentTime : 0);
+    var inAscolto = prova !== null ? !finita : (attiva === mostrata && !voce.paused && !finita);
+    var cue = null;
+    if (inAscolto) for (var k = 0; k < st.sottotitoli.length; k++) { var c = st.sottotitoli[k]; if (t >= c[0] && t < c[1]) { cue = c[2]; break; } }
+    if (cue !== ultimoCue) { ultimoCue = cue; sotto.textContent = cue || ""; }
+    disegnaOnda(st, finita ? st.durata : t);
+  }
+  function disegnaOnda(st, t) {
+    var c = onda.getContext("2d"), W = onda.width, H = onda.height, n = st.onda.length, passo = W / n, fatto = t / st.durata * n;
+    c.clearRect(0, 0, W, H);
+    for (var k = 0; k < n; k++) {
+      var h = Math.max(3, st.onda[k] / 9 * (H - 4));
+      c.fillStyle = k < fatto ? (st.sistema === "qv" ? "#F0B917" : "#76B39D") : "rgba(249,248,235,.22)";
+      c.fillRect(k * passo + 1, (H - h) / 2, Math.max(2, passo - 3), h);
+    }
+  }
+  voce.addEventListener("ended", function () { finita = true; $("ancora").hidden = false; });
+  $("ancora").addEventListener("click", function () { if (mostrata >= 0) { suona(mostrata, true); aggiorna(); } });
+  $("altro").addEventListener("click", function () { if (mostrata >= 0) { prossimo(mostrata); suona(mostrata, true); aggiorna(); } });
+
+  /* dopo ogni gesto la sintonia si aggancia alla stazione, se è abbastanza vicina */
+  function scorri(a, ms) {
+    cancelAnimationFrame(animazione);
+    var da = f, t0 = performance.now();
+    (function passo(ora) {
+      var k = Math.min(1, (ora - t0) / ms), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      f = da + (a - da) * e; aggiorna();
+      if (k < 1) animazione = requestAnimationFrame(passo);
+    })(t0);
+  }
+  function aggancia() { if (!ST.length) return; var i = vicina(f), d = Math.abs(ST[i].f - f); if (d > 0.004 && d < PRESA) scorri(ST[i].f, 260); }
+  function salta(verso) {
+    var cand = ST.filter(function (s) { return verso > 0 ? s.f > f + 0.05 : s.f < f - 0.05; });
+    if (!cand.length) return;
+    var meta = verso > 0 ? cand[0].f : cand[cand.length - 1].f;
+    scorri(meta, Math.min(1400, 500 + Math.abs(meta - f) * 380));
+  }
+  function gira(df) { cancelAnimationFrame(animazione); f += df; aggiorna(); }
+
+  /* trascinare la scala */
+  (function () {
+    var x0 = null, f0 = 0, mosso = false;
+    scala.addEventListener("pointerdown", function (e) { x0 = e.clientX; f0 = f; mosso = false; scala.setPointerCapture(e.pointerId); scala.classList.add("presa"); cancelAnimationFrame(animazione); });
+    scala.addEventListener("pointermove", function (e) { if (x0 === null) return; var dx = e.clientX - x0; if (Math.abs(dx) > 4) mosso = true; if (mosso) { f = f0 - dx / px(); aggiorna(); } });
+    function fine(e) {
+      if (x0 === null) return; x0 = null; scala.classList.remove("presa");
+      if (!mosso) {                                   // un tocco fermo: su un nome porta a quella stazione, altrove porta lì l'ago
+        var el = document.elementFromPoint(e.clientX, e.clientY), b = el && el.closest ? el.closest(".staz") : null;
+        if (b) { scorri(ST[+b.dataset.i].f, 900); return; }
+        var r = scala.getBoundingClientRect(); scorri(f + (e.clientX - r.left - r.width / 2) / px(), 500); setTimeout(aggancia, 540); return;
+      }
+      aggancia();
+    }
+    scala.addEventListener("pointerup", fine); scala.addEventListener("pointercancel", fine);
+  })();
+
+  /* girare la manopola */
+  (function () {
+    var a0 = null;
+    function angolo(e) { var r = manopola.getBoundingClientRect(); return Math.atan2(e.clientX - r.left - r.width / 2, -(e.clientY - r.top - r.height / 2)) * 180 / Math.PI; }
+    manopola.addEventListener("pointerdown", function (e) { a0 = angolo(e); manopola.setPointerCapture(e.pointerId); manopola.focus({ preventScroll: true }); });
+    manopola.addEventListener("pointermove", function (e) {
+      if (a0 === null) return; var a = angolo(e), d = a - a0; if (d > 180) d -= 360; if (d < -180) d += 360; a0 = a; gira(d / 90);
+    });
+    function fine() { if (a0 === null) return; a0 = null; aggancia(); }
+    manopola.addEventListener("pointerup", fine); manopola.addEventListener("pointercancel", fine);
+  })();
+
+  /* rotella e tastiera */
+  var attesa = null;
+  function dopoUnPo() { clearTimeout(attesa); attesa = setTimeout(aggancia, 320); }
+  [scala, manopola].forEach(function (el) {
+    el.addEventListener("wheel", function (e) { e.preventDefault(); var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY; gira(Math.max(-0.4, Math.min(0.4, d / 500))); dopoUnPo(); }, { passive: false });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.target.closest && e.target.closest(".soglia")) return;
+    var k = e.key;
+    if (k === "ArrowRight" || k === "ArrowUp") { gira(0.1); dopoUnPo(); }
+    else if (k === "ArrowLeft" || k === "ArrowDown") { gira(-0.1); dopoUnPo(); }
+    else if (k === "PageUp") salta(1); else if (k === "PageDown") salta(-1);
+    else if (k === "Home") scorri(ST[0].f, 1200); else if (k === "End") scorri(ST[ST.length - 1].f, 1200);
+    else return;
+    e.preventDefault();
+  });
+  $("prima").addEventListener("click", function () { salta(-1); });
+  $("dopo").addEventListener("click", function () { salta(1); });
+
+  /* accendere e spegnere: il primo tocco serve al browser per far partire l'audio */
+  function accendi() {
+    accesa = true; radio.classList.add("accesa"); $("spia").setAttribute("aria-pressed", "true"); $("spia").lastElementChild.textContent = "Accesa";
+    if (!ctx) avviaSuono(); else if (ctx.state === "suspended") ctx.resume();
+    if (ctx && ctx.state === "suspended") ctx.resume();
+    mostrata = -2; aggiorna();
+    if (attiva >= 0 && prova === null && !finita) { var p = voce.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+  function spegni() {
+    accesa = false; $("spia").setAttribute("aria-pressed", "false"); $("spia").lastElementChild.textContent = "Spenta"; radio.classList.remove("accesa");
+    voce.pause(); aggiorna();
+  }
+  $("accendi").addEventListener("click", function () {
+    accendi(); manopola.focus({ preventScroll: true });
+    if (ST.length && Math.abs(f - 88) < 0.01) setTimeout(function () { scorri(ST[0].f, 2200); }, 500);     // la prima stazione arriva da sola, attraverso il fruscio
+  });
+  $("spia").addEventListener("click", function () { accesa ? spegni() : accendi(); });
+  var inSospeso = false;       // quando si apre l'episodio su YouTube la radio tace, e riprende al ritorno
+  document.addEventListener("visibilitychange", function () {
+    if (!accesa) return;
+    if (document.hidden) { inSospeso = !voce.paused; voce.pause(); if (ctx) ctx.suspend(); }
+    else { if (ctx) ctx.resume(); if (inSospeso && attiva >= 0) { var p = voce.play(); if (p && p.catch) p.catch(function () {}); } }
+  });
+  window.addEventListener("resize", aggiorna);
+
+  if (q.has("acceso")) { accesa = true; $("soglia").hidden = true; radio.classList.add("accesa"); $("spia").lastElementChild.textContent = "Accesa"; }
+  aggiorna(); requestAnimationFrame(battito);
+  window.RADIO = { stato: function () { return { f: f, attiva: attiva, mostrata: mostrata, accesa: accesa, tema: $("tema").textContent, sotto: sotto.textContent, src: voce.getAttribute("src"), pausa: voce.paused, t: voce.currentTime, vol: voce.volume, ctx: ctx ? ctx.state : null }; } };
+})();
+</script>
+
+<script>
+/* sito di prova (beta): i link fra le pagine portano ai file della prova; quello che la prova non ha va al sito vero */
+(function () {
+  var MAPPA = {"/": "index.html", "/laccademia/": "laccademia.html", "/chi-siamo/": "chi-siamo.html", "/l-enneagramma/": "l-enneagramma.html", "/la-storia/": "la-storia.html", "/i-9-tipi/": "i-9-tipi.html", "/corsi-accademia/": "corsi-accademia.html", "/corsi/": "corsi.html", "/residenziale-enneagramma/": "residenziale-enneagramma.html", "/contatti/": "contatti.html", "/podcast/": "podcast.html", "/radio-accademia/": "radio-accademia.html", "/corsi-in-partenza/": "corsi-in-partenza.html", "/termini-e-condizioni/": "termini-e-condizioni.html", "/privacy-policy/": "privacy-policy.html", "/corsi-in-partenza/individuazione-esatta-del-tipo/": "corsi-in-partenza-individuazione-esatta-del-tipo.html", "/2025/12/28/quando-confondiamo-un-tipo-con-un-altro/": "2025-12-28-quando-confondiamo-un-tipo-con-un-altro.html", "/2025/12/18/il-lavoro-della-presenza-nell-enneagramma/": "2025-12-18-il-lavoro-della-presenza-nell-enneagramma.html", "/2025/11/29/le-leggi-universali-dellenneagramma/": "2025-11-29-le-leggi-universali-dellenneagramma.html", "/2025/10/30/chi-e-davvero-un-maestro/": "2025-10-30-chi-e-davvero-un-maestro.html", "/2025/10/09/test-con-enneagramma-si-o-no/": "2025-10-09-test-con-enneagramma-si-o-no.html", "/2025/09/25/crescere-con-l-enneagramma/": "2025-09-25-crescere-con-l-enneagramma.html", "/2025/09/14/come-riconoscere-il-proprio-tipo/": "2025-09-14-come-riconoscere-il-proprio-tipo.html", "/2025/08/08/s1e5-come-combinare-guai-con-enneagramma/": "2025-08-08-s1e5-come-combinare-guai-con-enneagramma.html", "/2025/07/24/s1e4-come-i-9-tipi-spendono-energia/": "2025-07-24-s1e4-come-i-9-tipi-spendono-energia.html", "/2025/07/10/osservazione-di-se/": "2025-07-10-osservazione-di-se.html", "/2025/06/26/s1e2-i-3-centri-di-intelligenza/": "2025-06-26-s1e2-i-3-centri-di-intelligenza.html", "/2025/06/12/s1e1-dentro-la-mappa/": "2025-06-12-s1e1-dentro-la-mappa.html"}, VERO = "https://www.accademiaenneagramma.it";
+  // dentro i riquadri (saggio, mappa, radio) la radice della prova è sopra la cartella assets/
+  var i = location.href.indexOf("/assets/"), dentro = i > 0;
+  function base() { return dentro ? location.href.slice(0, i + 1) : location.href; }
+  function dove(href) {
+    var u; try { u = new URL(href, location.href); } catch (e) { return null; }
+    if (u.protocol === "mailto:" || u.protocol === "tel:") return null;
+    var mio = u.origin === location.origin, p = u.pathname;
+    if (u.origin === VERO || (mio && /^\/[^.]*\/?$/.test(p) && !/\.html$/.test(p))) {
+      if (!/\/$/.test(p)) p += "/";
+      var f = MAPPA[p];
+      if (f) return { url: new URL(f + u.hash, base()).href, top: true };
+      return { url: VERO + p + u.hash, fuori: true };
+    }
+    return null;
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a || e.defaultPrevented) return;
+    var d = dove(a.getAttribute("href"));
+    if (!d) return;
+    e.preventDefault();
+    if (d.fuori) window.open(d.url, "_blank", "noopener");
+    else (dentro ? window.parent : window).location.href = d.url;
+  }, true);
+  document.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = e.target, n = document.createElement("p");
+    n.textContent = "Questa è la versione di prova del sito: il modulo non invia messaggi. Scrivici a info@accademiaenneagramma.it.";
+    n.style.cssText = "margin:12px 0 0;padding:10px 12px;border:1px solid rgba(240,185,23,.6);font-size:14px";
+    f.appendChild(n);
+  }, true);
+})();
+</script>
+</body>
+</html>

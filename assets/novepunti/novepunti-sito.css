@@ -1,0 +1,30 @@
+/* ===== «Perché nove punti» nel sito nuovo (sito/nuova-home/sorgente/novepunti-sito.css, 12/10/2026) =====
+   Il saggio è il prototipo ClaudePipeline/progetti-github/accademia-nove-punti, copiato da costruisci.py.
+   Qui prende la pietra (la dà la pagina intorno), i colori dell'Accademia e i caratteri del sito: i nomi
+   «Montserrat» e «Lora» del saggio puntano a Inter e a Cormorant Garamond. Le figure restano fogli chiari
+   appoggiati sulla pietra, così i disegni si leggono come sono stati pensati. */
+@font-face { font-family: "Montserrat"; font-weight: 100 450; font-display: swap; src: url("../caratteri/inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 451 900; font-display: swap; src: url("../caratteri/inter-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lora"; font-weight: 400; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lora"; font-weight: 700; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lora"; font-style: italic; font-weight: 400; font-display: swap; src: url("../caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
+
+:root { color-scheme: dark; }
+html, body { background: transparent !important; }
+body { color: #F9F8EB; font-size: 21px; }
+body::before, footer { display: none !important; }
+.apertura { background: transparent !important; min-height: 0 !important; padding-top: 30px !important; padding-bottom: 60px !important; }
+.apertura::after { display: none; }
+.apertura h1 { font-family: "Lora", serif; font-weight: 400; font-size: clamp(44px, 8vw, 80px); letter-spacing: 0; }
+.colonna, .colonna h2 { color: #F9F8EB; }
+h2 { font-family: "Lora", serif !important; font-weight: 400 !important; font-size: clamp(32px, 4.6vw, 44px) !important; letter-spacing: 0 !important; }
+h2 .num { font-family: "Montserrat", sans-serif; color: #F0B917 !important; }
+.nota-sistemi { color: rgba(249,248,235,.75); border-left-color: #76B39D; }
+.sistema.qv { border: 1px solid rgba(249,248,235,.35); }
+.fonte { color: #F9F8EB; background: rgba(118,179,157,.18); }
+.cit { color: #F9F8EB; }
+figure.vivo { color: #0E3A46; background: #F9F8EB; border: 0; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); }
+.per-continuare { background: rgba(10,40,48,.55) !important; border-color: rgba(249,248,235,.14) !important; }
+.per-continuare h3 { color: #F0B917 !important; }
+.per-continuare a { color: #F0B917 !important; text-decoration-color: rgba(240,185,23,.45) !important; }
+.giu { color: rgba(249,248,235,.75); }
