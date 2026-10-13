@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 20:03 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 20:09 da index.html: non modificare a mano. */
 @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
@@ -436,6 +436,39 @@
     .in-partenza { top: calc(max(12px, env(safe-area-inset-top)) + 34px); left: 16px; right: 16px; transform: none; max-width: none; }
     .ip-tit { white-space: normal; }
     body.ha-barra .in-partenza { top: calc(max(12px, env(safe-area-inset-top)) + 96px); }
+  }
+
+
+  /* stile 1, «medaglioni sui punti» (Luca, 13/10/2026: «il titolo nel menu enneagramma è troppo semplice, le icone
+     ogni tanto volano»; «prova a mettere lo stile 1 sui 9 punti»): la foto sta sul punto, il titolo in corsivo subito fuori */
+  .medaglione {
+    position: absolute; z-index: 1; width: clamp(52px, 5.4vw, 74px); aspect-ratio: 1 / 1; border-radius: 50%;
+    background: var(--petrolio) center / cover no-repeat; cursor: pointer;
+    box-shadow: 0 0 0 2px rgba(240,185,23,.85), 0 0 0 6px rgba(240,185,23,.08), 0 0 24px rgba(240,185,23,.35);
+    transform: translate(-50%, -50%) scale(.55); opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .6s, transform .8s cubic-bezier(.2,.7,.2,1), visibility 0s .6s;
+  }
+  .medaglione.oro, .medaglione.anteprima {
+    transform: translate(-50%, -50%); opacity: 1; visibility: visible; pointer-events: auto;
+    transition: opacity .6s, transform .8s cubic-bezier(.2,.7,.2,1), visibility 0s;
+  }
+  .medaglione.anteprima:not(.oro) { opacity: .75; }
+  .medaglione.oro:hover { transform: translate(-50%, -50%) scale(1.08); }
+  body.zoom .medaglione { opacity: 0 !important; transition: opacity .3s; }
+  html.senza-immagini .medaglione { display: none; }
+  html[data-immagini="segni"] .medaglione { display: grid; place-items: center; color: var(--oro); background: radial-gradient(circle, #1b5f72, #0e3a46); }
+  html[data-immagini="segni"] .medaglione svg { width: 52%; height: 52%; fill: currentColor; }
+  @media (max-width: 699px) { .medaglione { width: 44px; } }
+  html[data-voci="medaglioni"] .voce .img, html[data-voci="medaglioni"] .striscia { display: none !important; }
+  html[data-voci="medaglioni"] .voce .t {
+    font-family: var(--serif); font-style: italic; font-size: clamp(19px, 1.9vw, 26px); line-height: 1.05; color: var(--avorio);
+    background-image: linear-gradient(rgba(240,185,23,.75), rgba(240,185,23,.75));
+  }
+  html[data-voci="medaglioni"] .voce.oro .t { color: var(--avorio); }
+  html[data-voci="medaglioni"] .voce.vista.tenue .t { font-size: clamp(15px, 1.4vw, 19px); }
+  @media (max-width: 600px) {
+    html[data-voci="medaglioni"] .voce .t { font-size: 15.5px; max-width: 22vw; }
+    html[data-voci="medaglioni"] .voce.vista.tenue .t { font-size: 13px; }
   }
 
 

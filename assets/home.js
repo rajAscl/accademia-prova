@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 20:03 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 20:09 da index.html: non modificare a mano. */
 /* ===== Prima del prototipo (sito/nuova-home/sorgente/prima.js) ===== */
 window.VERSIONE_PULITA = true;
 const AE_BASE = (window.ACCADEMIA_HOME && window.ACCADEMIA_HOME.base) || "";
@@ -346,6 +346,8 @@ const $ = id => document.getElementById(id);
 const ganci = { tracciato: new Set(), inizia: new Set(), punto: new Set(), chiuso: new Set(), entra: new Set(), rivedi: new Set(), adatta: new Set(), pagina: new Set(), ritorno: new Set() };
 const emetti = (k, ...a) => ganci[k].forEach(f => f(...a));
 const sostituisci = { triangolo: null };   // uno stile può disegnare il triangolo a modo suo
+const medaglioni = {}, MEDAGLIONI = true;   // stile 1 delle voci (13/10/2026)
+document.documentElement.dataset.voci = "medaglioni";
 let distanzaEtichette = 0;                  // px in più fra punto ed etichetta
 const NS = "http://www.w3.org/2000/svg";
 const corpo = document.body, figura = $("figura"), svg = $("disegno");
@@ -477,6 +479,15 @@ VERTICI.forEach(v => {
     if (IMMAGINI["carta" + n]) e.querySelector(".img").style.backgroundImage = `url("${IMMAGINI["carta" + n]}")`;
     e.addEventListener("click", () => apriPagina(n));
     $("etichette").appendChild(e); voci[n] = e;
+    // stile 1, «medaglioni sui punti» (Luca, 13/10/2026): la foto della voce sta sul suo punto della figura
+    const m = document.createElement("span");
+    m.className = "medaglione"; m.dataset.n = n; m.setAttribute("aria-hidden", "true");
+    m.addEventListener("click", () => apriPagina(n));
+    m.addEventListener("pointerenter", () => e.classList.add("sopra"));
+    m.addEventListener("pointerleave", () => e.classList.remove("sopra"));
+    $("etichette").appendChild(m); medaglioni[n] = m;
+    new MutationObserver(() => ["vista", "oro", "anteprima", "tenue"].forEach(c => m.classList.toggle(c, e.classList.contains(c))))
+      .observe(e, { attributes: true, attributeFilter: ["class"] });
   });
   // passare sopra (o arrivarci col tasto Tab) mostra in anteprima le voci di quella parte
   [b, ...PUNTI[v].map(n => voci[n])].forEach(el => {
@@ -492,12 +503,19 @@ const W = () => document.documentElement.clientWidth;
 function posiziona(el) {
   const n = +el.dataset.n, d = dir(n), p = punto(n);
   const fx = (p.x - vb.x) / vb.s * 100, fy = (p.y - vb.y) / vb.s * 100;
-  const off = (el.classList.contains("vertice") ? 16 : 12) + distanzaEtichette;
+  const med = MEDAGLIONI && el.classList.contains("voce") ? medaglioni[n] : null;
+  if (med) { med.style.left = fx + "%"; med.style.top = fy + "%"; }
+  const off = (el.classList.contains("vertice") ? 16 : 12) + distanzaEtichette + (med ? med.offsetWidth / 2 + 2 : 0);
   el.style.left = `calc(${fx}% + ${(d.x * off).toFixed(1)}px)`;
   el.style.top = `calc(${fy}% + ${(d.y * off).toFixed(1)}px)`;
   el.style.textAlign = d.x > 0.25 ? "left" : d.x < -0.25 ? "right" : "center";
   el.dataset.lato = d.x > 0.25 ? "s" : d.x < -0.25 ? "d" : "c";
-  if (el.classList.contains("voce")) {
+  if (med) {
+    // col medaglione sul punto la voce è solo il titolo, appena fuori dal medaglione
+    el.style.flexDirection = "column";
+    el.style.alignItems = d.x > 0.25 ? "flex-start" : d.x < -0.25 ? "flex-end" : "center";
+    el.style.transform = `translate(${(-50 + 50 * d.x).toFixed(1)}%, ${(-50 + 50 * d.y).toFixed(1)}%)`;
+  } else if (el.classList.contains("voce")) {
     // la carta della voce: l'immagine verso l'esterno, la scritta vicino al punto.
     // Sui lati (punti 2, 3, 6, 7), su uno schermo largo, immagine e scritta stanno affiancate: così non si accavallano
     const fila = W() >= 700 && Math.abs(d.y) < .6;
@@ -592,6 +610,7 @@ function applicaImmagini() {
   document.documentElement.dataset.immagini = immagini;
   document.documentElement.classList.toggle("senza-immagini", immagini === "no");
   Object.keys(voci).forEach(n => vestiImmagine(voci[n].querySelector(".img"), +n));
+  Object.keys(medaglioni).forEach(n => vestiImmagine(medaglioni[n], +n));
   strisciaDi = null;
   riempiStriscia();
 }
