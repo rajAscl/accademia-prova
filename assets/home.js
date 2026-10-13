@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 21:02 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 22:20 da index.html: non modificare a mano. */
 /* ===== Prima del prototipo (sito/nuova-home/sorgente/prima.js) ===== */
 window.VERSIONE_PULITA = true;
 const AE_BASE = (window.ACCADEMIA_HOME && window.ACCADEMIA_HOME.base) || "";
@@ -123,7 +123,7 @@ const PAGINE = {
     apertura: "Due corsi online per cominciare e per distinguere un tipo dall'altro.",
     blocchi: [
       { tipo: "corsi", voci: [
-        { titolo: "Masterclass Enneagramma", img: "corso-me", testo: "Le basi dell'Enneagramma in otto ore e 34 lezioni, da seguire quando vuoi.", dettagli: ["Livello principiante", "Prepara alla settimana residenziale"], link: ["Apri la pagina del corso", AE_SITO + "/courses/masterclass-enneagramma/"] },
+        { titolo: "Masterclass Enneagramma", img: "corso-me", testo: "Le basi dell'Enneagramma in otto ore e 34 lezioni, da seguire quando vuoi.", dettagli: ["Livello principiante"], link: ["Apri la pagina del corso", AE_SITO + "/courses/masterclass-enneagramma/"] },
         { titolo: "Masterclass Differenziatori", img: "corso-md", testo: "36 confronti diretti fra un tipo e l'altro.", dettagli: ["Un'ora, tre lezioni", "Livello intermedio"], link: ["Apri la pagina del corso", AE_SITO + "/corsi-accademia/masterclass-differenziatori/"] }
       ] }
     ],
@@ -142,17 +142,16 @@ const PAGINE = {
     azione: null
   },
   4: {
-    slug: "residenziale",
-    sito: "/residenziale-enneagramma/",
-    // Luca, 12/10/2026: «residenziale e percorso di certificazione vanno insieme»
-    apertura: "Una settimana in presenza ogni anno e, per chi vuole, la strada verso la certificazione.",
+    slug: "certificazione",
+    sito: "/certificazione/",
+    // Luca, 13/10/2026: la residenziale non è in programma e esce dal sito; al punto 4 la certificazione,
+    // «in preparazione senza essere dettagliati»
+    apertura: "Per chi vuole insegnare e far conoscere l'Enneagramma, o integrarlo nel proprio lavoro.",
     blocchi: [
-      { tipo: "testo", titolo: "La settimana residenziale", testo: ["Studio, esercizi e osservazione di sé con una guida e con un gruppo. È il percorso a cui teniamo di più: si svolge una volta all'anno e si può ripetere, e la Masterclass Enneagramma la prepara."] },
-      { tipo: "nota", testo: "Date, luogo e iscrizione sono sulla pagina della settimana." },
-      { tipo: "testo", titolo: "La certificazione", testo: ["Per chi vuole insegnare e far conoscere l'Enneagramma, o integrarlo nel proprio lavoro, dopo averci lavorato su di sé.", "Ci si arriva dalla settimana residenziale, che si può ripetere negli anni e può portare alla certificazione per l'insegnamento e la divulgazione."] },
-      { tipo: "nota", testo: "Requisiti e tempi della certificazione: testo in preparazione." }
+      { tipo: "testo", testo: ["La certificazione è pensata per chi conosce già l'Enneagramma, anche per averci lavorato su di sé, e ora vuole insegnarlo, farlo conoscere o portarlo nel proprio lavoro.", "Il percorso è in preparazione."] },
+      { tipo: "nota", testo: "Se ti interessa, scrivici: ti avvisiamo quando apriamo le iscrizioni." }
     ],
-    azione: ["Apri la pagina della settimana", AE_SITO + "/residenziale-enneagramma/"]
+    azione: ["Scrivici", AE_SITO + "/contatti/"]
   },
   5: {
     slug: "podcast",
@@ -297,11 +296,11 @@ const TESTI = {
     },
     3: {
       nome: "Formazione",
-      sottotitolo: "Corsi, residenziale, certificazione",
+      sottotitolo: "Corsi online, corsi in partenza, certificazione",
       voci: {
-        2: { titolo: "Masterclass online", frase: "Due corsi registrati, da seguire quando vuoi" },
+        2: { titolo: "Corsi online", frase: "I corsi registrati, da seguire quando vuoi" },
         3: { titolo: "Corsi in partenza", frase: "I corsi con una data di inizio e le iscrizioni aperte" },
-        4: { titolo: "Residenziale e certificazione", frase: "La settimana in presenza e il percorso di certificazione" }
+        4: { titolo: "Certificazione", frase: "Per insegnare l'Enneagramma o portarlo nel proprio lavoro: in preparazione" }
       }
     },
     6: {
@@ -944,7 +943,7 @@ function chiudiPagina(rendiFuoco = true) {
 }
 
 // la pagina chiesta dall'indirizzo (#il-metodo…); i nomi vecchi portano alle pagine che li hanno presi (12/10/2026)
-const VECCHI_INDIRIZZI = { "percorso-di-certificazione": "residenziale", "video": "podcast", "il-metodo": "l-enneagramma" };
+const VECCHI_INDIRIZZI = { "percorso-di-certificazione": "certificazione", "residenziale": "corsi-in-partenza", "video": "podcast", "il-metodo": "l-enneagramma" };
 function chiaveDaIndirizzo() {
   let h = decodeURIComponent(location.hash.slice(1));
   h = VECCHI_INDIRIZZI[h] || h;

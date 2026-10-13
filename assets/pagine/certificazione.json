@@ -1,0 +1,28 @@
+{
+ "slug": [
+  "certificazione",
+  "percorso-di-certificazione"
+ ],
+ "punto": 4,
+ "titolo": "Certificazione",
+ "apertura": "Per chi vuole insegnare e far conoscere l'Enneagramma, o integrarlo nel proprio lavoro.",
+ "descrizione": "Il percorso di certificazione dell'Accademia Enneagramma, per chi vuole insegnare e divulgare l'Enneagramma o integrarlo nel proprio lavoro. In preparazione.",
+ "blocchi": [
+  {
+   "tipo": "testo",
+   "id": "certificazione",
+   "testo": [
+    "La certificazione è pensata per chi conosce già l'Enneagramma, anche per averci lavorato su di sé, e ora vuole insegnarlo, farlo conoscere o portarlo nel proprio lavoro.",
+    "Il percorso è in preparazione."
+   ]
+  },
+  {
+   "tipo": "nota",
+   "testo": "Se ti interessa, scrivici: ti avvisiamo quando apriamo le iscrizioni."
+  }
+ ],
+ "azione": [
+  "Scrivici",
+  "/contatti/"
+ ]
+}

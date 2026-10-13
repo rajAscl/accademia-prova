@@ -4,9 +4,9 @@
   "corsi"
  ],
  "punto": 2,
- "titolo": "Masterclass online",
- "apertura": "Due corsi online per cominciare e per distinguere un tipo dall'altro.",
- "descrizione": "Le Masterclass online dell'Accademia Enneagramma: le basi in otto ore e 34 lezioni, e 36 confronti diretti fra i tipi.",
+ "titolo": "Corsi online",
+ "apertura": "I corsi registrati dell'Accademia, da seguire quando vuoi.",
+ "descrizione": "I corsi online dell'Accademia Enneagramma: la Masterclass Enneagramma, le basi in otto ore e 34 lezioni, e la Masterclass Differenziatori, 36 confronti diretti fra i tipi.",
  "blocchi": [
   {
    "tipo": "corsi",
@@ -18,7 +18,6 @@
      "testo": "Una comprensione chiara e solida dell'Enneagramma: le basi in otto ore e 34 lezioni, da seguire quando vuoi.",
      "dettagli": [
       "Livello principiante",
-      "Prepara alla settimana residenziale",
       "229 €"
      ],
      "link": [

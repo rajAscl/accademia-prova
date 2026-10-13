@@ -1,18 +1,12 @@
 <!doctype html>
-
 <html lang="en-US">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
 <meta name="theme-color" content="#000000">
-
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name='robots' content='max-image-preview:large, noindex, nofollow' />
-<title>Nuovo sito dell’Accademia</title>
+<title>Nuovo sito dell'Accademia</title>
 <link rel="alternate" type="application/rss+xml" title="Accademia Enneagramma &raquo; Feed" href="https://www.accademiaenneagramma.it/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Accademia Enneagramma &raquo; Comments Feed" href="https://www.accademiaenneagramma.it/comments/feed/" />
 <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.accademiaenneagramma.it/wp-json/oembed/1.0/embed?url=http%3A%2F%2F127.0.0.1%3A8811%2F" />
@@ -23,7 +17,7 @@
 <link rel='shortlink' href='index.html' />
 <link rel="preload" href="assets/caratteri/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/caratteri/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" id="ae-nh-css" href="assets/home.css?ver=0.1.202610132102">
+<link rel="stylesheet" id="ae-nh-css" href="assets/home.css?ver=0.1.202610132220">
 <meta name="description" content="Nell&#039;enneagramma sono iscritte leggi universali che si rivelano agli occhi di chi mette il cuore al centro della ricerca della verità.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
@@ -37,182 +31,96 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="ae-copia" content="127.0.0.1">
 </head>
-
 <body class="home wp-singular page-template-default page page-id-6 logged-in wp-embed-responsive wp-theme-twentytwentyfive ae-nh">
-
 <div class="ae-nh-wp" hidden></div><h1 class="ae-nh-nascosto">Accademia Enneagramma</h1>
-
 <div class="fondo" aria-hidden="true"></div>
 
-
-
 <div class="marchio" id="marchio"></div>
-
 <a class="contatti" id="link-contatti" href="#contatti"></a>
-
 <a class="in-partenza" id="in-partenza" href="#corsi-in-partenza" hidden></a>
-
 <button class="rivedi" id="rivedi" type="button"></button>
-
 <p class="suggerimento" id="suggerimento" aria-live="polite"></p>
-
 <div class="varianti" id="varianti" role="group" aria-label="Opzione">
-
   <span>Opzione</span>
-
   <button type="button" data-v="1" aria-pressed="true">1</button>
-
   <button type="button" data-v="2" aria-pressed="false">2</button>
-
 </div>
-
-
 
 <main class="scena" id="scena">
-
   <div class="figura" id="figura">
-
     <svg class="disegno" id="disegno" viewBox="0 0 1000 1000" aria-hidden="true">
-
       <g class="cerchio-g"><circle class="cerchio" id="cerchio" cx="500" cy="500" r="310"/></g>
-
       <path class="tri" id="tri"/>
-
       <path class="esa" id="esa"/>
-
       <g id="punti"></g>
-
       <circle class="penna" id="penna" r="3"/>
-
     </svg>
-
     <button class="entra" id="entra" type="button"></button>
-
     <nav id="menu" aria-label="Menu principale">
-
       <div id="etichette"></div>
-
       <button class="centro" id="centro" type="button"></button>
-
     </nav>
-
     <div class="striscia" id="striscia" aria-hidden="true"></div>
-
   </div>
-
 </main>
 
-
-
 <section class="pagina" id="pagina" role="dialog" aria-modal="true" aria-labelledby="pg-titolo" hidden>
-
   <header class="pg-testa">
-
     <button class="pg-torna" id="pg-torna" type="button"><span></span></button>
-
     <span class="pg-marchio" id="pg-marchio"></span>
-
   </header>
-
   <div class="pg-dentro" id="pg-dentro"></div>
-
 </section>
 
-
-
 <!-- =====================================================================
-
      PROVE DI STILE (10/10/2026)
-
      Si scelgono con ?stile=A, ?stile=A+B+E+G … oppure dal menu "Stile" in basso a destra.
-
      Ogni stile ha il suo blocco CSS (html[data-stile~="X"]) e il suo blocco JS (STILI.X).
-
      Per tenerne uno e buttare il resto si cancellano i blocchi degli altri.
-
      ===================================================================== -->
 
-
-
 <div class="prove" id="prove" role="region" aria-label="Prove">
-
   <div class="riga" role="group" aria-label="Prove di stile">
-
     <button type="button" class="freccia" id="stile-prima" aria-label="Stile precedente">&lsaquo;</button>
-
     <div class="bottoni" id="riga-stili"></div>
-
     <button type="button" class="freccia" id="stile-dopo" aria-label="Stile successivo">&rsaquo;</button>
-
     <button type="button" class="tutti-stili" id="tutti-stili" aria-expanded="false">Tutti gli stili</button>
-
   </div>
-
   <div class="riga" id="riga-opzioni" role="group" aria-label="Dopo aver scelto una parte"><span class="etichetta-riga">Le altre voci</span></div>
-
   <div class="riga" id="riga-immagini" role="group" aria-label="Immagini delle voci"><span class="etichetta-riga">Immagini delle voci</span></div>
-
   <p class="aiuto" id="aiuto-prove"></p>
-
   <button type="button" class="chiudi-prove" id="chiudi-prove" aria-label="Nascondi la barra delle prove">&times;</button>
-
   <button type="button" class="riapri" id="riapri-prove">Mostra le prove</button>
-
 </div>
-
 <footer class="ae-nh-piede">
-
 	<a href="https://www.accademiaenneagramma.it/mio-account/">Il mio account</a>
-
 </footer>
-
 <noscript>
-
 	<nav class="ae-nh-senza-script" aria-label="Pagine del sito">
-
 		<p>Accademia Enneagramma</p>
-
 		<ul>
-
 			<li><a href="laccademia.html">L'Accademia</a></li>
-
 			<li><a href="chi-siamo.html">Chi siamo</a></li>
-
 			<li><a href="l-enneagramma.html">L'Enneagramma</a></li>
-
-			<li><a href="https://www.accademiaenneagramma.it/courses/masterclass-enneagramma/">La Masterclass</a></li>
-
-			<li><a href="residenziale-enneagramma.html">La settimana residenziale</a></li>
-
+			<li><a href="corsi-accademia.html">Corsi online</a></li>
+			<li><a href="certificazione.html">Certificazione</a></li>
 			<li><a href="podcast.html">Podcast</a></li>
-
 			<li><a href="contatti.html">Contatti</a></li>
-
 			<li><a href="https://www.accademiaenneagramma.it/mio-account/">Il mio account</a></li>
-
 		</ul>
-
 	</nav>
-
 </noscript>
-
 <script>window.ACCADEMIA_HOME = {"base":"assets\/","sito":"https:\/\/www.accademiaenneagramma.it","partenza":[{"titolo":"L\u2019individuazione esatta del tipo","url":"https:\/\/www.accademiaenneagramma.it\/corsi-in-partenza\/individuazione-esatta-del-tipo\/","riassunto":"Quattro serate online per riconoscere il proprio tipo, anche quando ci si ritrova in due.","img":"uploads\/2026\/10\/corso-prova-768x401.jpg","quando":"Dal 5 novembre","orario":"Quattro gioved\u00ec, 20:30-22:30","dove":"Online","posti":"14 posti","prezzo":"220 \u20ac","fino":"2 November","iscrizione":"https:\/\/www.accademiaenneagramma.it\/negozio\/"}],"uscite":{"scritti":[["Gurdjieff l'ha detto davvero?","11\/10\/2026","Online girano molte frasi attribuite a Gurdjieff, e non tutte vengono da lui.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-gurdjieff-l-ha-detto-davvero.jpg","https:\/\/www.instagram.com\/p\/DeWEajDlOWi\/","chat-gurdjieff-l-ha-detto-davvero"],["Quando la pancia ha gi\u00e0 capito","10\/10\/2026","A met\u00e0 di una frase chi vive di pancia ha gi\u00e0 capito come andr\u00e0 a finire.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/i-3-centri-di-intelligenza-quando-la-pancia-ha-gia-capito.jpg","https:\/\/www.instagram.com\/p\/DeUYws-F7sa\/","i-3-centri-di-intelligenza-quando-la-pancia-ha-gia-capito"],["Tre centri sotto un solo nome","09\/10\/2026","Viscerale, istintivo, motorio, centro del corpo o dell'azione: la pancia ha pi\u00f9 nomi di qualsiasi altro centro.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-tre-centri-sotto-un-solo-nome.jpg","https:\/\/www.instagram.com\/p\/DeQ75FZGiIr\/","chat-tre-centri-sotto-un-solo-nome"],["Il lavoro (s)corretto dei centri","08\/10\/2026","All'esame servirebbe la testa lucida, e invece il cuore sale in gola e la voce non esce.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-chi-fa-il-lavoro-di-chi.jpg","https:\/\/www.instagram.com\/p\/DePLvZwGpsB\/","chat-chi-fa-il-lavoro-di-chi"],["Il 2 tipo che viene prima degli altri","06\/10\/2026","Del tipo 2 si conosce il ritratto generoso di chi si prodiga per tutti, ma esiste anche un tipo 2 pi\u00f9 ritirato che pensa prima di tutto a s\u00e9.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-il-2-che-viene-prima-degli-altri.jpg","https:\/\/www.instagram.com\/p\/DeJQ78KF8GY\/","chat-il-2-che-viene-prima-degli-altri"],["Ci\u00f2 per cui siamo nati","05\/10\/2026","I Greci chiamavano aret\u00e8 (\u1f00\u03c1\u03b5\u03c4\u03ae) la virt\u00f9 propria di ciascuno, ci\u00f2 per cui una persona \u00e8 nata.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-cio-per-cui-siamo-nati.jpg","https:\/\/www.facebook.com\/122195440100938911","chat-cio-per-cui-siamo-nati"],["Cosa c'\u00e8 dentro il simbolo","04\/10\/2026","Molti conoscono i nove tipi, pochi si fermano a guardare il simbolo su cui sono disposti.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-cosa-c-e-dentro-il-simbolo.jpg","https:\/\/www.instagram.com\/p\/DeESOBxDqWS\/","chat-cosa-c-e-dentro-il-simbolo"],["Beato chi ha un'anima, beato chi non ne ha, ma guai e dolore a chi ne ha soltanto l'embrione.","03\/10\/2026","Per Gurdjieff l'anima non \u00e8 un dono che si riceve alla nascita.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-beato-chi-ha-un-anima-beato-chi-non-ne-h.jpg","https:\/\/www.instagram.com\/p\/DeBgQ21jjv6\/","chat-beato-chi-ha-un-anima-beato-chi-non-ne-h"],["Il primo scalino del lavoro su di s\u00e9","02\/10\/2026","Si comincia da cose piccole: la mano che gesticola mentre parliamo, la gamba che dondola sotto il tavolo.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-il-primo-scalino-del-lavoro-su-di-se.jpg","https:\/\/www.instagram.com\/p\/Dd_11d6FV1G\/","chat-il-primo-scalino-del-lavoro-su-di-se"],["Stesso tipo, nomi diversi","01\/10\/2026","Il meccanismo di difesa del 5 ha due nomi, e tutti e due hanno una storia.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-stesso-tipo-nomi-diversi.jpg","https:\/\/www.instagram.com\/p\/Dd8X0oNl_43\/","chat-stesso-tipo-nomi-diversi"],["Occupati da ci\u00f2 che non c'\u00e8","30\/09\/2026","Preoccuparsi vuol dire occuparsi di una cosa prima che ci sia.","https:\/\/www.accademiaenneagramma.it\/wp-content\/uploads\/2026\/10\/chat-occupati-da-cio-che-non-c-e.jpg","https:\/\/www.facebook.com\/122194816574938911","chat-occupati-da-cio-che-non-c-e"]],"puntate":[],"video":[]}};</script>
-
-<script src="assets/home.js?ver=0.1.202610132102"></script>
-
+<script src="assets/home.js?ver=0.1.202610132220"></script>
 <div class="ae-nh-wp" hidden></div><script>
-
 /* l'avviso dei cookie (plugin Statistiche e cookie) è nato dentro il contenitore nascosto: lo si porta fuori */
-
 (function () { var c = document.getElementById('ae-cookie'); if (c) document.body.appendChild(c); })();
-
 </script>
-
 
 <script>
 /* sito di prova (beta): i link fra le pagine portano ai file della prova; quello che la prova non ha va al sito vero */
 (function () {
-  var MAPPA = {"/": "index.html", "/laccademia/": "laccademia.html", "/chi-siamo/": "chi-siamo.html", "/l-enneagramma/": "l-enneagramma.html", "/la-storia/": "la-storia.html", "/i-9-tipi/": "i-9-tipi.html", "/corsi-accademia/": "corsi-accademia.html", "/corsi/": "corsi.html", "/residenziale-enneagramma/": "residenziale-enneagramma.html", "/contatti/": "contatti.html", "/podcast/": "podcast.html", "/radio-accademia/": "radio-accademia.html", "/corsi-in-partenza/": "corsi-in-partenza.html", "/termini-e-condizioni/": "termini-e-condizioni.html", "/privacy-policy/": "privacy-policy.html", "/2025/12/28/quando-confondiamo-un-tipo-con-un-altro/": "2025-12-28-quando-confondiamo-un-tipo-con-un-altro.html", "/2025/12/18/il-lavoro-della-presenza-nell-enneagramma/": "2025-12-18-il-lavoro-della-presenza-nell-enneagramma.html", "/2025/11/29/le-leggi-universali-dellenneagramma/": "2025-11-29-le-leggi-universali-dellenneagramma.html", "/2025/10/30/chi-e-davvero-un-maestro/": "2025-10-30-chi-e-davvero-un-maestro.html", "/2025/10/09/test-con-enneagramma-si-o-no/": "2025-10-09-test-con-enneagramma-si-o-no.html", "/2025/09/25/crescere-con-l-enneagramma/": "2025-09-25-crescere-con-l-enneagramma.html", "/2025/09/14/come-riconoscere-il-proprio-tipo/": "2025-09-14-come-riconoscere-il-proprio-tipo.html", "/2025/08/08/s1e5-come-combinare-guai-con-enneagramma/": "2025-08-08-s1e5-come-combinare-guai-con-enneagramma.html", "/2025/07/24/s1e4-come-i-9-tipi-spendono-energia/": "2025-07-24-s1e4-come-i-9-tipi-spendono-energia.html", "/2025/07/10/osservazione-di-se/": "2025-07-10-osservazione-di-se.html", "/2025/06/26/s1e2-i-3-centri-di-intelligenza/": "2025-06-26-s1e2-i-3-centri-di-intelligenza.html", "/2025/06/12/s1e1-dentro-la-mappa/": "2025-06-12-s1e1-dentro-la-mappa.html", "/corsi-in-partenza/individuazione-esatta-del-tipo/": "corsi-in-partenza-individuazione-esatta-del-tipo.html"}, VERO = "https://www.accademiaenneagramma.it";
+  var MAPPA = {"/": "index.html", "/laccademia/": "laccademia.html", "/chi-siamo/": "chi-siamo.html", "/l-enneagramma/": "l-enneagramma.html", "/la-storia/": "la-storia.html", "/i-9-tipi/": "i-9-tipi.html", "/corsi-accademia/": "corsi-accademia.html", "/corsi/": "corsi.html", "/certificazione/": "certificazione.html", "/residenziale-enneagramma/": "residenziale-enneagramma.html", "/contatti/": "contatti.html", "/podcast/": "podcast.html", "/radio-accademia/": "radio-accademia.html", "/corsi-in-partenza/": "corsi-in-partenza.html", "/termini-e-condizioni/": "termini-e-condizioni.html", "/privacy-policy/": "privacy-policy.html", "/2025/12/28/quando-confondiamo-un-tipo-con-un-altro/": "2025-12-28-quando-confondiamo-un-tipo-con-un-altro.html", "/2025/12/18/il-lavoro-della-presenza-nell-enneagramma/": "2025-12-18-il-lavoro-della-presenza-nell-enneagramma.html", "/2025/11/29/le-leggi-universali-dellenneagramma/": "2025-11-29-le-leggi-universali-dellenneagramma.html", "/2025/10/30/chi-e-davvero-un-maestro/": "2025-10-30-chi-e-davvero-un-maestro.html", "/2025/10/09/test-con-enneagramma-si-o-no/": "2025-10-09-test-con-enneagramma-si-o-no.html", "/2025/09/25/crescere-con-l-enneagramma/": "2025-09-25-crescere-con-l-enneagramma.html", "/2025/09/14/come-riconoscere-il-proprio-tipo/": "2025-09-14-come-riconoscere-il-proprio-tipo.html", "/2025/08/08/s1e5-come-combinare-guai-con-enneagramma/": "2025-08-08-s1e5-come-combinare-guai-con-enneagramma.html", "/2025/07/24/s1e4-come-i-9-tipi-spendono-energia/": "2025-07-24-s1e4-come-i-9-tipi-spendono-energia.html", "/2025/07/10/osservazione-di-se/": "2025-07-10-osservazione-di-se.html", "/2025/06/26/s1e2-i-3-centri-di-intelligenza/": "2025-06-26-s1e2-i-3-centri-di-intelligenza.html", "/2025/06/12/s1e1-dentro-la-mappa/": "2025-06-12-s1e1-dentro-la-mappa.html", "/corsi-in-partenza/individuazione-esatta-del-tipo/": "corsi-in-partenza-individuazione-esatta-del-tipo.html"}, VERO = "https://www.accademiaenneagramma.it";
   // dentro i riquadri (saggio, mappa, radio) la radice della prova è sopra la cartella assets/
   var i = location.href.indexOf("/assets/"), dentro = i > 0;
   function base() { return dentro ? location.href.slice(0, i + 1) : location.href; }
@@ -253,6 +161,4 @@
 })();
 </script>
 </body>
-
 </html>
-

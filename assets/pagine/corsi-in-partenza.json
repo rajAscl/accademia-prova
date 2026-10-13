@@ -1,6 +1,7 @@
 {
  "slug": [
-  "corsi-in-partenza"
+  "corsi-in-partenza",
+  "residenziale-enneagramma"
  ],
  "punto": 3,
  "titolo": "Corsi in partenza",
@@ -12,7 +13,7 @@
   }
  ],
  "azione": [
-  "Le Masterclass online, da seguire quando vuoi",
+  "I corsi online, da seguire quando vuoi",
   "/corsi-accademia/"
  ]
 }
