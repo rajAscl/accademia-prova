@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 20:09 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 21:02 da index.html: non modificare a mano. */
 /* ===== Prima del prototipo (sito/nuova-home/sorgente/prima.js) ===== */
 window.VERSIONE_PULITA = true;
 const AE_BASE = (window.ACCADEMIA_HOME && window.ACCADEMIA_HOME.base) || "";

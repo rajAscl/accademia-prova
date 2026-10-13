@@ -1,0 +1,130 @@
+/* Le pagine del negozio nell'aspetto nuovo (Luca, 13/10/2026): la pagina del corso di MasterStudy, carrello, cassa,
+   «Il mio account». Si carica dopo pagina.css (testata, fondo, caratteri, colori) e cambia solo l'aspetto:
+   il contenuto e l'acquisto restano a MasterStudy e WooCommerce (negozio.php). */
+
+/* via la testata e il piede del tema: ci sono quelli del sito nuovo */
+body.ae-negozio #header, body.ae-negozio footer#footer, body.ae-negozio .stm_lms_breadcrumbs, body.ae-negozio .stm_breadcrumbs_unit,
+body.ae-negozio .stm_lms_page_title, body.ae-negozio .entry-header .entry-title + .breadcrumbs { display: none !important; }
+body.ae-negozio #wrapper, body.ae-negozio #main, body.ae-negozio .stm-lms-wrapper, body.ae-negozio .container,
+body.ae-negozio #main .post_type_exist, body.ae-negozio .woocommerce { background: transparent !important; }
+body.ae-negozio #wrapper { position: relative; z-index: 1; padding-top: 0 !important; }
+body.ae-negozio .stm-lms-wrapper { padding-top: 34px !important; }
+body.ae-negozio .ae-negozio-testa { position: sticky; top: 0; z-index: 20; }
+body.ae-negozio .ae-negozio-piede { position: relative; z-index: 1; max-width: 1170px; margin: 40px auto 0; }
+
+/* caratteri e colori del sito nuovo dappertutto */
+body.ae-negozio, body.ae-negozio p, body.ae-negozio li, body.ae-negozio span, body.ae-negozio a, body.ae-negozio div,
+body.ae-negozio label, body.ae-negozio input, body.ae-negozio select, body.ae-negozio textarea, body.ae-negozio button, body.ae-negozio td, body.ae-negozio th {
+  font-family: var(--sans) !important; color: var(--avorio);
+}
+body.ae-negozio h1, body.ae-negozio h2, body.ae-negozio h3, body.ae-negozio h4,
+body.ae-negozio .masterstudy-single-course-title, body.ae-negozio .masterstudy-single-course-details__title,
+body.ae-negozio .masterstudy-popular-courses__title, body.ae-negozio .masterstudy-curriculum-list__section-title {
+  font-family: var(--serif) !important; font-weight: 500 !important; color: var(--avorio) !important; letter-spacing: 0 !important; text-transform: none !important;
+}
+body.ae-negozio a:hover { color: var(--oro) !important; }
+
+/* ---------- la pagina del corso ---------- */
+body.ae-negozio .masterstudy-single-course-title { font-size: clamp(40px, 5vw, 64px) !important; line-height: 1.02 !important; }
+/* niente numeri vuoti né cose che distraggono: recensioni a zero, conteggio studenti, lista dei desideri, condividi */
+body.ae-negozio .masterstudy-single-course__info-block_students,
+body.ae-negozio .masterstudy-single-course-rating, body.ae-negozio .masterstudy-single-course__info-block:has(.masterstudy-single-course-rating),
+body.ae-negozio .masterstudy-single-course-tabs__item:nth-child(3),
+body.ae-negozio .masterstudy-single-course__buttons, body.ae-negozio .masterstudy-single-course-instructor__avatar,
+body.ae-negozio .masterstudy-single-course-status, body.ae-negozio .masterstudy-popular-courses__item-status { display: none !important; }
+body.ae-negozio .masterstudy-single-course-categories__item { font-size: 12px !important; letter-spacing: .16em; text-transform: uppercase; color: var(--salvia) !important; }
+body.ae-negozio .masterstudy-single-course-instructor__title { font-size: 11px !important; letter-spacing: .16em; text-transform: uppercase; color: var(--salvia) !important; }
+body.ae-negozio .masterstudy-single-course-instructor__name { font-family: var(--serif) !important; font-size: 21px !important; color: var(--avorio) !important; }
+body.ae-negozio .masterstudy-single-course__info { border: 0 !important; }
+body.ae-negozio .masterstudy-single-course-tabs { border-bottom: 1px solid rgba(249,248,235,.18) !important; }
+body.ae-negozio .masterstudy-single-course-tabs__item { color: rgba(249,248,235,.75) !important; font-size: 13px !important; letter-spacing: .14em; text-transform: uppercase; }
+body.ae-negozio .masterstudy-single-course-tabs__item_active { color: var(--oro) !important; border-color: var(--oro) !important; }
+body.ae-negozio .masterstudy-single-course-tabs__item::after { background: var(--oro) !important; }
+body.ae-negozio .masterstudy-single-course-description__image { border-radius: 6px; box-shadow: 0 0 0 1px rgba(240,185,23,.35); }
+body.ae-negozio .masterstudy-single-course-description__content, body.ae-negozio .masterstudy-single-course-description__content p,
+body.ae-negozio .masterstudy-single-course-description__content li { font-size: 17px !important; line-height: 1.65 !important; color: #FBFAF1 !important; }
+body.ae-negozio .masterstudy-single-course-description__content strong { color: var(--oro); font-weight: 500; }
+/* gli argomenti */
+body.ae-negozio .masterstudy-curriculum-list__wrapper { background: rgba(8,40,49,.6) !important; border: 1px solid rgba(249,248,235,.14) !important; border-radius: 6px; }
+body.ae-negozio .masterstudy-curriculum-list__section { background: transparent !important; }
+body.ae-negozio .masterstudy-curriculum-list__section-title { font-size: 22px !important; }
+body.ae-negozio .masterstudy-curriculum-list__link, body.ae-negozio .masterstudy-curriculum-list__item { background: transparent !important; border-color: rgba(249,248,235,.1) !important; }
+body.ae-negozio .masterstudy-curriculum-list__order { color: var(--oro) !important; }
+body.ae-negozio .masterstudy-curriculum-list__title, body.ae-negozio .masterstudy-curriculum-list__container-wrapper * { color: var(--avorio) !important; }
+body.ae-negozio .masterstudy-curriculum-list__excerpt, body.ae-negozio .masterstudy-curriculum-list__meta { color: rgba(249,248,235,.7) !important; }
+body.ae-negozio .masterstudy-curriculum-list__toggler::before, body.ae-negozio [class*="__icon"]::before { color: var(--oro) !important; }
+
+/* la colonna a destra: il bottone d'oro, i dettagli, l'altro corso */
+body.ae-negozio .masterstudy-single-course__sidebar { position: sticky; top: 84px; }
+body.ae-negozio .masterstudy-buy-button__link, body.ae-negozio .masterstudy-buy-button__link:hover {
+  background: var(--oro) !important; border-radius: 4px !important; box-shadow: 0 8px 24px rgba(240,185,23,.25);
+}
+body.ae-negozio .masterstudy-buy-button__link *, body.ae-negozio .masterstudy-buy-button__link:hover * { color: #0b3440 !important; font-weight: 600 !important; }
+body.ae-negozio .masterstudy-buy-button__separator { background: rgba(11,52,64,.3) !important; }
+body.ae-negozio .masterstudy-single-course-details, body.ae-negozio .masterstudy-popular-courses {
+  background: rgba(8,40,49,.72) !important; border: 1px solid rgba(240,185,23,.35) !important; border-radius: 6px; padding: 18px 20px !important; margin-top: 22px !important;
+}
+body.ae-negozio .masterstudy-single-course-details__title, body.ae-negozio .masterstudy-popular-courses__title { font-size: 24px !important; }
+body.ae-negozio .masterstudy-single-course-details__item { border-color: rgba(249,248,235,.14) !important; }
+body.ae-negozio .masterstudy-single-course-details__name { color: rgba(249,248,235,.75) !important; }
+body.ae-negozio .masterstudy-single-course-details__quantity { font-family: var(--serif) !important; font-size: 19px !important; color: var(--avorio) !important; }
+body.ae-negozio .masterstudy-single-course-details__icon::before { color: var(--oro) !important; }
+body.ae-negozio .masterstudy-popular-courses__item-title { font-family: var(--serif) !important; font-size: 19px !important; color: var(--avorio) !important; }
+body.ae-negozio .masterstudy-popular-courses__item-price, body.ae-negozio .masterstudy-popular-courses__item-price * { color: var(--oro) !important; }
+body.ae-negozio .masterstudy-popular-courses__item-rating { display: none !important; }
+
+/* le finestre di MasterStudy (accesso, condividi) restano chiare e leggibili */
+body.ae-negozio [class*="-modal__container"], body.ae-negozio [class*="-modal__container"] * { color: #12323b !important; }
+body.ae-negozio [class*="-modal__container"] { background: #F9F8EB !important; }
+
+/* ---------- carrello, cassa, account (WooCommerce) ---------- */
+body.ae-negozio .wc-block-cart, body.ae-negozio .wc-block-checkout, body.ae-negozio .woocommerce-MyAccount-content,
+body.ae-negozio .woocommerce-MyAccount-navigation, body.ae-negozio .woocommerce form.login, body.ae-negozio .woocommerce form.register {
+  background: rgba(8,40,49,.72); border: 1px solid rgba(249,248,235,.14); border-radius: 6px; padding: 22px 24px;
+}
+body.ae-negozio .wc-block-components-sidebar, body.ae-negozio .wc-block-checkout__sidebar { background: transparent !important; }
+body.ae-negozio .wc-block-components-order-summary, body.ae-negozio .wc-block-components-totals-wrapper,
+body.ae-negozio .wc-block-cart-items, body.ae-negozio .wc-block-components-sidebar-layout .wc-block-components-panel { border-color: rgba(249,248,235,.16) !important; }
+body.ae-negozio .wc-block-components-text-input input, body.ae-negozio .wc-block-components-combobox input, body.ae-negozio select,
+body.ae-negozio .wc-blocks-components-select__select, body.ae-negozio textarea, body.ae-negozio .woocommerce input.input-text {
+  background: rgba(249,248,235,.96) !important; color: #12323b !important; border: 1px solid rgba(240,185,23,.5) !important; border-radius: 4px !important;
+}
+body.ae-negozio .wc-block-components-text-input label, body.ae-negozio .wc-blocks-components-select__label { color: #3c5a62 !important; }
+body.ae-negozio .wc-block-components-text-input.is-active label { color: #3c5a62 !important; }
+body.ae-negozio .wc-block-components-checkout-place-order-button, body.ae-negozio .wc-block-cart__submit-button,
+body.ae-negozio .woocommerce button.button, body.ae-negozio .woocommerce a.button {
+  background: var(--oro) !important; color: #0b3440 !important; border: 0 !important; border-radius: 4px !important; font-weight: 600 !important; letter-spacing: .04em;
+}
+body.ae-negozio .wc-block-components-checkout-place-order-button *, body.ae-negozio .wc-block-cart__submit-button * { color: #0b3440 !important; }
+body.ae-negozio .wc-block-components-radio-control__option, body.ae-negozio .wc-block-components-radio-control-accordion-option { border-color: rgba(249,248,235,.2) !important; }
+body.ae-negozio .wc-block-components-product-name { font-family: var(--serif) !important; font-size: 20px !important; color: var(--avorio) !important; }
+body.ae-negozio .wc-block-components-formatted-money-amount { color: var(--avorio); }
+body.ae-negozio .wc-block-components-totals-footer-item .wc-block-components-formatted-money-amount { color: var(--oro) !important; font-size: 22px; }
+body.ae-negozio .wc-block-components-checkbox__mark { fill: var(--oro); }
+body.ae-negozio .wc-block-components-checkbox__input { background: rgba(249,248,235,.9) !important; border-color: var(--oro) !important; }
+/* i campi di Stripe e PayPal vivono nei loro riquadri: lo sfondo chiaro attorno li tiene leggibili */
+body.ae-negozio .wc-block-components-radio-control-accordion-content { background: rgba(249,248,235,.96); border-radius: 4px; padding: 12px !important; }
+body.ae-negozio .wc-block-components-radio-control-accordion-content * { color: #12323b !important; }
+
+@media (max-width: 760px) {
+  body.ae-negozio .masterstudy-single-course__sidebar { position: static; }
+  body.ae-negozio .wc-block-cart, body.ae-negozio .wc-block-checkout { padding: 16px 14px; }
+}
+
+/* il blu di serie di MasterStudy diventa l'oro dell'Accademia, in tutte le sue parti */
+body.ae-negozio {
+  --accent-100: rgba(240,185,23,1); --accent-70: rgba(240,185,23,.7); --accent-50: rgba(240,185,23,.5); --accent-30: rgba(240,185,23,.3);
+  --accent-10: rgba(240,185,23,.1); --accent-5: rgba(240,185,23,.05); --accent-0: rgba(240,185,23,0); --accent-hover: rgba(240,185,23,.85);
+}
+/* la fascia col titolo del tema (Carrello, Pagamento): via, il titolo resta nel contenuto */
+body.ae-negozio .entry-header { background: transparent !important; padding: 34px 0 6px !important; min-height: 0 !important; }
+body.ae-negozio .entry-header .entry-title h1 { font-size: clamp(38px, 5vw, 58px) !important; text-align: left; }
+body.ae-negozio .entry-header .container { max-width: 1170px; }
+/* nel riepilogo solo il totale è d'oro; l'IVA inclusa resta piccola */
+body.ae-negozio .wc-block-components-totals-footer-item-tax, body.ae-negozio .wc-block-components-totals-footer-item-tax * { color: rgba(249,248,235,.75) !important; font-size: 13px !important; }
+/* l'altra masterclass, senza stelline vuote e col suo nome */
+body.ae-negozio .masterstudy-popular-courses__rating { display: none !important; }
+body.ae-negozio .masterstudy-popular-courses__title { font-size: 0 !important; }
+body.ae-negozio .masterstudy-popular-courses__title::before { content: "Anche"; font-size: 24px; }
+body.ae-negozio .masterstudy-popular-courses__price, body.ae-negozio .masterstudy-popular-courses__price * { color: var(--oro) !important; }
+body.ae-negozio .wc-block-components-totals-footer-item .wc-block-components-totals-footer-item-tax .wc-block-components-formatted-money-amount { color: rgba(249,248,235,.75) !important; font-size: 13px !important; }

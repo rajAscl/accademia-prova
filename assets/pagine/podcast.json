@@ -4,12 +4,10 @@
  ],
  "punto": 5,
  "titolo": "Podcast e video",
- "apertura": "Le puntate del podcast dell'Accademia, dalla più recente alla prima, e gli altri video del canale.",
  "descrizione": "Il podcast e i video dell'Accademia Enneagramma con Luca Giorgetti e Mauro Vedovello: tutte le puntate e gli altri video del canale.",
  "blocchi": [
   {
-   "tipo": "puntate",
-   "titolo": "Le puntate"
+   "tipo": "puntate"
   },
   {
    "tipo": "griglia",
@@ -28,8 +26,5 @@
    ]
   }
  ],
- "azione": [
-  "Il canale YouTube",
-  "https://www.youtube.com/@accademiaenneagramma"
- ]
+ "testata": "podcast-copertina"
 }
