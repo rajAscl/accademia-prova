@@ -1,4 +1,4 @@
-/* Accademia - nuova home. Costruito da costruisci.py il 12/10/2026 19:28 da index.html: non modificare a mano. */
+/* Accademia - nuova home. Costruito da costruisci.py il 13/10/2026 20:03 da index.html: non modificare a mano. */
 /* ===== Prima del prototipo (sito/nuova-home/sorgente/prima.js) ===== */
 window.VERSIONE_PULITA = true;
 const AE_BASE = (window.ACCADEMIA_HOME && window.ACCADEMIA_HOME.base) || "";
@@ -201,11 +201,9 @@ const PAGINE = {
     blocchi: [
       { tipo: "scritti", voci: [
         ["Beato chi ha un'anima, beato chi non ne ha, ma guai e dolore a chi ne ha soltanto l'embrione.", "G. I. Gurdjieff, in P. D. Ouspensky, Frammenti di un insegnamento sconosciuto · 03/10/2026", "Per Gurdjieff l'anima non è un dono che si riceve alla nascita.", "chat-beato-chi-ha-un-anima-beato-chi-non-ne-h"],
-        ["Il tipo 6 che ha paura di avere paura", "02/10/2026", "Fra i sottotipi il tipo 6 sessuale è il controtipo, quello che nella descrizione comune del tipo non si ritrova.", "animato-il-tipo-6-controfobico-va-contro-il-peri"],
         ["Il primo scalino del lavoro su di sé", "Osservazione di sé · 02/10/2026", "Si comincia da cose piccole: la mano che gesticola mentre parliamo, la gamba che dondola sotto il tavolo.", "chat-il-primo-scalino-del-lavoro-su-di-se"],
         ["Stesso tipo, nomi diversi", "Ichazo, Naranjo, Daniels · 01/10/2026", "Il meccanismo di difesa del 5 ha due nomi, e tutti e due hanno una storia.", "chat-stesso-tipo-nomi-diversi"],
         ["Occupati da ciò che non c'è", "30/09/2026", "Preoccuparsi vuol dire occuparsi di una cosa prima che ci sia.", "chat-occupati-da-cio-che-non-c-e"],
-        ["Non lamentarsi: da dove si comincia", "Quarta Via · 29/09/2026", "La lamentela si vede meglio nelle giornate storte: un imprevisto, la fretta, una persona che ci irrita.", "animato-lamentarsi-una-piccola-fuga-di-energia-c"],
         ["Dove va l'attenzione va l'energia", "Un principio del lavoro su di sé · 28/09/2026", "Mentre facciamo una cosa la mente è spesso altrove, e l'energia va dove va l'attenzione.", "chat-dove-va-l-attenzione-va-l-energia"]
       ] }
     ],
@@ -227,6 +225,27 @@ const PAGINE = {
     azione: ["La pagina dei contatti", AE_SITO + "/contatti/"]
   }
 };
+
+/* ==========================================================
+   LE USCITE NUOVE (Luca, 12/10/2026: «ad ogni pubblicazione di post o di video occorre aggiornare il sito in
+   automatico [...] queste modifiche devono andare nella sezione articoli e video/podcast»). Sul sito WordPress
+   scrive in window.ACCADEMIA_HOME.uscite quello che esce via via (pipeline/sito_uscite.py lo manda al sito):
+   i post vanno in testa agli Articoli, le puntate in testa all'elenco, gli altri video in testa alla griglia.
+   Un pezzo che è già negli elenchi qui sopra non si ripete. Fuori dal sito gli elenchi restano questi.
+   ========================================================== */
+(function () {
+  const u = window.ACCADEMIA_HOME && window.ACCADEMIA_HOME.uscite;
+  if (!u) return;
+  const metti = (n, tipo, nuove, chiave) => {
+    const b = PAGINE[n].blocchi.find(x => x.tipo === tipo);
+    if (!b || !Array.isArray(nuove)) return;
+    const ci = new Set(b.voci.map(chiave));
+    b.voci.unshift(...nuove.filter(v => Array.isArray(v) && !ci.has(chiave(v))));
+  };
+  metti(7, "scritti", u.scritti, v => v[5] || v[3]);   // [titolo, quando, testo, immagine, link, nome del post]
+  metti(5, "elenco", u.puntate, v => v[3]);            // [sigla, titolo, quando, id YouTube]
+  metti(5, "griglia", u.video, v => v[2]);             // [titolo, quando, id YouTube, immagine]
+})();
 
 
 /* ==========================================================
@@ -690,7 +709,8 @@ async function alCentro() {
 const pagina = $("pagina");
 let paginaAperta = null, origine = null, ultimaPagina = null;
 const crea_ = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
-const sfondo = (e, chiave) => { if (IMMAGINI[chiave]) e.style.backgroundImage = `url("${IMMAGINI[chiave]}")`; return e; };
+// la chiave di un'immagine del prototipo, oppure l'indirizzo di un'immagine del sito (le uscite nuove)
+const sfondo = (e, chiave) => { const u = IMMAGINI[chiave] || (/^https?:\/\//.test(chiave) ? chiave : ""); if (u) e.style.backgroundImage = `url("${u}")`; return e; };
 const nomeDi = n => TESTI.sezioni[sezioneDi(n)].voci[n].titolo;
 
 // il piccolo enneagramma in alto nella pagina, col punto acceso
@@ -749,19 +769,20 @@ function blocco(b) {
   }
   if (b.tipo === "griglia") {
     const g = crea_("div", "pg-griglia");
-    b.voci.forEach(([titolo, quando, id]) => {
+    b.voci.forEach(([titolo, quando, id, img]) => {
       const a = crea_("a"); a.href = "https://www.youtube.com/watch?v=" + id; a.target = "_blank"; a.rel = "noopener";
-      a.append(sfondo(crea_("div", "foto"), "v-" + id), crea_("span", "titolo", titolo), crea_("span", "quando", quando));
+      a.append(sfondo(crea_("div", "foto"), img || "v-" + id), crea_("span", "titolo", titolo), crea_("span", "quando", quando));
       g.appendChild(a);
     });
     sez.appendChild(g);
   }
   if (b.tipo === "scritti") {
     const g = crea_("div", "pg-scritti");
-    b.voci.forEach(([titolo, quando, testo, img]) => {
-      const a = crea_("article"), d = crea_("div");
-      d.append(crea_("h3", null, titolo), crea_("p", "quando", quando), crea_("p", null, testo));
-      a.append(sfondo(crea_("div", "foto"), "a-" + img), d); g.appendChild(a);
+    b.voci.forEach(([titolo, quando, testo, img, link]) => {
+      const a = crea_("article"), d = crea_("div"), h = crea_("h3");
+      if (link) { const l = crea_("a", null, titolo); l.href = link; l.target = "_blank"; l.rel = "noopener"; h.appendChild(l); } else h.textContent = titolo;
+      d.append(h, crea_("p", "quando", quando), crea_("p", null, testo));
+      a.append(sfondo(crea_("div", "foto"), /^https?:/.test(img) ? img : "a-" + img), d); g.appendChild(a);
     });
     sez.appendChild(g);
   }

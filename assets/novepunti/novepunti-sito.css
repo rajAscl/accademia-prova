@@ -39,3 +39,6 @@ figure.vivo { color: #0E3A46; background: #F9F8EB; border: 0; box-shadow: 0 30px
   .sistema { letter-spacing: .06em; font-size: 10.5px; }
   .apertura h1 { font-size: 46px; }
 }
+/* sul sito si parte dal testo: il titolo è quello della pagina (Luca, 13/10/2026: «senza tanti preamboli») */
+.apertura { display: none !important; }
+.colonna > .entra:first-child > p:first-child { margin-top: 18px !important; }

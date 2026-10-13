@@ -101,6 +101,8 @@ a { color: inherit; }
 .legenda i { width: 8px; height: 8px; border-radius: 50%; background: var(--oro); } .legenda .ep i { background: var(--acqua); }
 
 /* ---------- accensione ---------- */
+.ascolta { font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--notte); background: var(--oro); border: 0; border-radius: 99px; padding: 9px 16px; margin: 10px 0 0; cursor: pointer; animation: ascolta 2s ease-in-out infinite; }
+@keyframes ascolta { 50% { box-shadow: 0 0 0 6px rgba(240,185,23,.18); } }
 .soglia { position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; padding: 28px; text-align: center;
   background: linear-gradient(rgba(14,58,70,.90), rgba(14,58,70,.97)), var(--notte) url("img/trama-stelle.jpg") center / cover; transition: opacity .6s, visibility .6s; }
 .accesa .soglia { opacity: 0; visibility: hidden; }
@@ -154,6 +156,7 @@ a { color: inherit; }
       <div class="freq"><b id="freq">88.0</b><span>MHz</span></div>
       <h2 class="tema" id="tema">· · ·</h2>
       <div class="sistema" id="sistema"><i></i><span></span></div>
+      <button class="ascolta" id="ascolta" hidden>Tocca per ascoltare</button>
       <div class="sotto" id="sotto" aria-live="polite"><p></p></div>
       <canvas class="onda" id="onda" width="1120" height="88"></canvas>
       <div class="sottoriga">
@@ -191,14 +194,7 @@ a { color: inherit; }
   <p class="aiuto" id="aiuto">Gira la manopola<span class="dito"> oppure trascina la scala.</span><span class="tasti">, trascina la scala oppure usa le frecce della tastiera.</span></p>
   <div class="legenda"><span class="qv"><i></i>Quarta Via</span><span class="ep"><i></i>Enneagramma delle Personalità</span></div>
 
-  <div class="soglia" id="soglia">
-    <div>
-      <h1>Radio Accademia</h1>
-      <p>Ogni frequenza è un tema dell’Enneagramma delle Personalità o della Quarta Via. Fra una stazione e l’altra c’è il fruscio. Quando ti fermi su una stazione senti una voce del podcast.</p>
-      <button id="accendi">Accendi</button>
-      <small>Serve l’audio del dispositivo.</small>
-    </div>
-  </div>
+  <!-- niente schermata d'ingresso (Luca, 13/10/2026: «quando clicca che ci sia direttamente ciò che cerca senza tanti preamboli») -->
 </div>
 
 <audio id="voce" preload="auto"></audio>
@@ -466,10 +462,16 @@ a { color: inherit; }
     accesa = false; $("spia").setAttribute("aria-pressed", "false"); $("spia").lastElementChild.textContent = "Spenta"; radio.classList.remove("accesa");
     voce.pause(); aggiorna();
   }
-  $("accendi").addEventListener("click", function () {
-    accendi(); manopola.focus({ preventScroll: true });
-    if (ST.length && Math.abs(f - 88) < 0.01) setTimeout(function () { scorri(ST[0].f, 2200); }, 500);     // la prima stazione arriva da sola, attraverso il fruscio
-  });
+  /* la radio è già accesa: il browser fa partire l'audio al primo tocco, ovunque nella pagina */
+  function sblocca() {
+    if (!accesa) return;
+    if (!ctx) avviaSuono(); else if (ctx.state === "suspended") ctx.resume();
+    if (attiva >= 0 && prova === null && !finita && voce.paused) { var p = voce.play(); if (p && p.catch) p.catch(function () {}); }
+    $("ascolta").hidden = true;
+  }
+  ["pointerdown", "keydown", "touchstart"].forEach(function (ev) { document.addEventListener(ev, sblocca, true); });
+  $("ascolta").addEventListener("click", sblocca);
+  function controllaMuta() { $("ascolta").hidden = !(accesa && ((ctx && ctx.state === "suspended") || (attiva >= 0 && voce.paused && !finita))); }
   $("spia").addEventListener("click", function () { accesa ? spegni() : accendi(); });
   var inSospeso = false;       // quando si apre l'episodio su YouTube la radio tace, e riprende al ritorno
   document.addEventListener("visibilitychange", function () {
@@ -479,8 +481,10 @@ a { color: inherit; }
   });
   window.addEventListener("resize", aggiorna);
 
-  if (q.has("acceso")) { accesa = true; $("soglia").hidden = true; radio.classList.add("accesa"); $("spia").lastElementChild.textContent = "Accesa"; }
   aggiorna(); requestAnimationFrame(battito);
+  accendi();
+  if (ST.length && Math.abs(f - 88) < 0.01) setTimeout(function () { scorri(ST[0].f, 1600); }, 300);     // la prima stazione arriva da sola, attraverso il fruscio
+  setTimeout(controllaMuta, 2200);
   window.RADIO = { stato: function () { return { f: f, attiva: attiva, mostrata: mostrata, accesa: accesa, tema: $("tema").textContent, sotto: sotto.textContent, src: voce.getAttribute("src"), pausa: voce.paused, t: voce.currentTime, vol: voce.volume, ctx: ctx ? ctx.state : null }; } };
 })();
 </script>
@@ -488,7 +492,7 @@ a { color: inherit; }
 <script>
 /* sito di prova (beta): i link fra le pagine portano ai file della prova; quello che la prova non ha va al sito vero */
 (function () {
-  var MAPPA = {"/": "index.html", "/laccademia/": "laccademia.html", "/chi-siamo/": "chi-siamo.html", "/l-enneagramma/": "l-enneagramma.html", "/la-storia/": "la-storia.html", "/i-9-tipi/": "i-9-tipi.html", "/corsi-accademia/": "corsi-accademia.html", "/corsi/": "corsi.html", "/residenziale-enneagramma/": "residenziale-enneagramma.html", "/contatti/": "contatti.html", "/podcast/": "podcast.html", "/radio-accademia/": "radio-accademia.html", "/corsi-in-partenza/": "corsi-in-partenza.html", "/termini-e-condizioni/": "termini-e-condizioni.html", "/privacy-policy/": "privacy-policy.html", "/corsi-in-partenza/individuazione-esatta-del-tipo/": "corsi-in-partenza-individuazione-esatta-del-tipo.html", "/2025/12/28/quando-confondiamo-un-tipo-con-un-altro/": "2025-12-28-quando-confondiamo-un-tipo-con-un-altro.html", "/2025/12/18/il-lavoro-della-presenza-nell-enneagramma/": "2025-12-18-il-lavoro-della-presenza-nell-enneagramma.html", "/2025/11/29/le-leggi-universali-dellenneagramma/": "2025-11-29-le-leggi-universali-dellenneagramma.html", "/2025/10/30/chi-e-davvero-un-maestro/": "2025-10-30-chi-e-davvero-un-maestro.html", "/2025/10/09/test-con-enneagramma-si-o-no/": "2025-10-09-test-con-enneagramma-si-o-no.html", "/2025/09/25/crescere-con-l-enneagramma/": "2025-09-25-crescere-con-l-enneagramma.html", "/2025/09/14/come-riconoscere-il-proprio-tipo/": "2025-09-14-come-riconoscere-il-proprio-tipo.html", "/2025/08/08/s1e5-come-combinare-guai-con-enneagramma/": "2025-08-08-s1e5-come-combinare-guai-con-enneagramma.html", "/2025/07/24/s1e4-come-i-9-tipi-spendono-energia/": "2025-07-24-s1e4-come-i-9-tipi-spendono-energia.html", "/2025/07/10/osservazione-di-se/": "2025-07-10-osservazione-di-se.html", "/2025/06/26/s1e2-i-3-centri-di-intelligenza/": "2025-06-26-s1e2-i-3-centri-di-intelligenza.html", "/2025/06/12/s1e1-dentro-la-mappa/": "2025-06-12-s1e1-dentro-la-mappa.html"}, VERO = "https://www.accademiaenneagramma.it";
+  var MAPPA = {"/": "index.html", "/laccademia/": "laccademia.html", "/chi-siamo/": "chi-siamo.html", "/l-enneagramma/": "l-enneagramma.html", "/la-storia/": "la-storia.html", "/i-9-tipi/": "i-9-tipi.html", "/corsi-accademia/": "corsi-accademia.html", "/corsi/": "corsi.html", "/residenziale-enneagramma/": "residenziale-enneagramma.html", "/contatti/": "contatti.html", "/podcast/": "podcast.html", "/radio-accademia/": "radio-accademia.html", "/corsi-in-partenza/": "corsi-in-partenza.html", "/termini-e-condizioni/": "termini-e-condizioni.html", "/privacy-policy/": "privacy-policy.html", "/2025/12/28/quando-confondiamo-un-tipo-con-un-altro/": "2025-12-28-quando-confondiamo-un-tipo-con-un-altro.html", "/2025/12/18/il-lavoro-della-presenza-nell-enneagramma/": "2025-12-18-il-lavoro-della-presenza-nell-enneagramma.html", "/2025/11/29/le-leggi-universali-dellenneagramma/": "2025-11-29-le-leggi-universali-dellenneagramma.html", "/2025/10/30/chi-e-davvero-un-maestro/": "2025-10-30-chi-e-davvero-un-maestro.html", "/2025/10/09/test-con-enneagramma-si-o-no/": "2025-10-09-test-con-enneagramma-si-o-no.html", "/2025/09/25/crescere-con-l-enneagramma/": "2025-09-25-crescere-con-l-enneagramma.html", "/2025/09/14/come-riconoscere-il-proprio-tipo/": "2025-09-14-come-riconoscere-il-proprio-tipo.html", "/2025/08/08/s1e5-come-combinare-guai-con-enneagramma/": "2025-08-08-s1e5-come-combinare-guai-con-enneagramma.html", "/2025/07/24/s1e4-come-i-9-tipi-spendono-energia/": "2025-07-24-s1e4-come-i-9-tipi-spendono-energia.html", "/2025/07/10/osservazione-di-se/": "2025-07-10-osservazione-di-se.html", "/2025/06/26/s1e2-i-3-centri-di-intelligenza/": "2025-06-26-s1e2-i-3-centri-di-intelligenza.html", "/2025/06/12/s1e1-dentro-la-mappa/": "2025-06-12-s1e1-dentro-la-mappa.html", "/corsi-in-partenza/individuazione-esatta-del-tipo/": "corsi-in-partenza-individuazione-esatta-del-tipo.html"}, VERO = "https://www.accademiaenneagramma.it";
   // dentro i riquadri (saggio, mappa, radio) la radice della prova è sopra la cartella assets/
   var i = location.href.indexOf("/assets/"), dentro = i > 0;
   function base() { return dentro ? location.href.slice(0, i + 1) : location.href; }

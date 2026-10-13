@@ -1,4 +1,4 @@
-/* Accademia - pagine. Costruito da costruisci.py il 12/10/2026 19:28 da index.html: non modificare a mano. */
+/* Accademia - pagine. Costruito da costruisci.py il 13/10/2026 20:03 da index.html: non modificare a mano. */
 @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("caratteri/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("caratteri/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
@@ -339,3 +339,10 @@ body.ae-pp-pieno .ae-pp-storia iframe { height: calc(100dvh - 68px); min-height:
 .ae-pp, .ae-pp * { -webkit-hyphens: manual; hyphens: manual; }
 .ae-pp-testa { background: rgba(14, 60, 73, .97) !important; border-bottom: 1px solid rgba(249,248,235,.08); }
 .pg-titolo, .pg-apertura, .ae-pp-tipo h2, .pg-blocco h2 { overflow-wrap: normal; word-break: normal; }
+
+/* le schede dei corsi si aprono con un clic ovunque (Luca, 13/10/2026: «bisogna andare diretti») */
+.pg-carta { position: relative; }
+.pg-carta .pg-link::after { content: ""; position: absolute; inset: 0; }
+.pg-carta:hover { outline: 1px solid rgba(240,185,23,.55); }
+/* senza l'occhiello il titolo prende un po' d'aria sotto la testata */
+.pg-titolo { margin-top: 26px; }

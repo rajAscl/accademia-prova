@@ -4,21 +4,11 @@
  ],
  "punto": 6,
  "titolo": "Radio Accademia",
- "apertura": "Una radio da esplorare girando la manopola: ogni stazione è un tema, con le voci del podcast.",
  "descrizione": "Radio Accademia: si gira la manopola e su ogni stazione parte uno spezzone del podcast dell'Accademia Enneagramma.",
  "blocchi": [
   {
    "tipo": "radio"
-  },
-  {
-   "tipo": "testo",
-   "testo": [
-    "Fra una stazione e l'altra si sente il fruscio. Su ogni stazione parte uno spezzone del podcast, con il rimando alla puntata intera."
-   ]
   }
  ],
- "azione": [
-  "Tutte le puntate",
-  "/podcast/"
- ]
+ "pieno": true
 }
